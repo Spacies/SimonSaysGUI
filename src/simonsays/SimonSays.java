@@ -1,6 +1,7 @@
 package simonsays;
 
 import simonsays.gameModel.Game;
+import simonsays.gui.SimonSaysGUI;
 
 /**
  * This is a SimonSays game produced for the project component of Project 
@@ -20,6 +21,21 @@ public class SimonSays {
         
         // Create the game object.
         final Game game = new Game();
+        
+        // Currently handled in Game class, otherwise GUI not displayed until
+        // CLI exits.
+//        // Create the game GUI
+//        final SimonSaysGUI gui = new SimonSaysGUI(game);
+//        
+//        // make the GUI visible
+//        java.awt.EventQueue.invokeLater(new Runnable() 
+//        {
+//            @Override
+//            public void run() 
+//            {
+//                gui.setVisible(true);
+//            }
+//        });
     }
     
 }

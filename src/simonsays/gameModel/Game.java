@@ -2,6 +2,7 @@ package simonsays.gameModel;
 
 import java.util.List;
 import java.util.Scanner;
+import simonsays.gui.SimonSaysGUI;
 
 /**
  * This is the class that knows the Simon Says game rules and enforces these
@@ -17,6 +18,10 @@ import java.util.Scanner;
  * @modified 08/04/13 Jaimes
  *  Added confirmation prompt when entering highscore in hasLost()
  *  Added confirmation prompt before exit
+ * @modified 14/05/13 Jaimes
+ *  Added getGameState()
+ *  Call to GUI in Game()
+ * 
  */
 public class Game 
 {    
@@ -38,7 +43,7 @@ public class Game
         // Play welcome tones to orient the player's ear
         //output.playWelcomeSound();
         
-        System.out.println("Welcome to Simon Says!");
+        //System.out.println("Welcome to Simon Says!");
         
         // Check highscore table exists
         if (!highscore.highscoreExists())
@@ -49,6 +54,20 @@ public class Game
         {
             //Create a user interface object 
             UserInterface cui = new UserInterface();
+            
+            // Create the game GUI
+            final SimonSaysGUI gui = new SimonSaysGUI(this);
+
+            // make the GUI visible
+            java.awt.EventQueue.invokeLater(new Runnable() 
+            {
+                @Override
+                public void run() 
+                {
+                    gui.setVisible(true);
+                }
+            });
+            
             //This loop contains code for producing a CUI menu and handling user
             //selections. This loop continues until the state is explicitly changed 
             //to either 'PLAYING' or 'QUIT'.
@@ -296,5 +315,25 @@ public class Game
             }
         }        
         return listsMatch;
-    }    
+    }  
+
+    /**
+     * Gets the current game state of this game object
+     * @return state The game's current game state
+     */
+    public GameState getState()
+    {
+        return state;
+    }
+
+    /**
+     * Gets this game's input object
+     * @return input The game's input object
+     */
+    public Input getInput()
+    {
+        return input;
+    }
+    
+    
 }
