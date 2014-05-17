@@ -34,6 +34,7 @@ public class Game
     private Highscore highscore = new Highscore();
     private Difficulty difficulty = Difficulty.NORMAL;
     
+    
     /**
      * A new instance of Simon Says that begins producing output and 
      * accepting input
@@ -153,7 +154,7 @@ public class Game
                     output.setDifficulty(difficulty);
                 }
                 //Begins printing relevant output and playing corresponding tones
-                output.produceOutput();
+                output.produceOutput(gui);
 
                 //Creates an input option passing the current output as a parameter
                 input = new Input(output, difficulty);

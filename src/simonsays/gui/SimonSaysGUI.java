@@ -1,6 +1,7 @@
 
 package simonsays.gui;
 
+import java.awt.Color;
 import simonsays.gameModel.Game;
 import simonsays.gameModel.GameState;
 import simonsays.gameModel.MakeSound;
@@ -17,6 +18,10 @@ import simonsays.gameModel.MakeSound;
 public class SimonSaysGUI extends javax.swing.JFrame
 {
     final Game game;
+    final MakeSound toneC = new MakeSound("file:C4_262Hz_1S.wav");
+    final MakeSound toneE = new MakeSound("file:E4_330Hz_1S.wav");
+    final MakeSound toneG = new MakeSound("file:G4_392Hz_1S.wav");
+    final MakeSound toneB = new MakeSound("file:B3_247Hz_1S.wav");
 
     /**
      * Creates new form SimonSaysGUINoImage
@@ -26,6 +31,36 @@ public class SimonSaysGUI extends javax.swing.JFrame
         this.game = game;
         initComponents();
     }
+    
+    public void buttonOutput(int output)
+    {
+        if(output == 1)
+        {
+            jBtnGreen.setBackground(Color.WHITE);
+            toneC.playNPause();
+            jBtnGreen.setBackground(Color.GREEN);
+            
+        }
+        if(output == 3)
+        {
+            jBtnRed.setBackground(Color.WHITE);
+            toneE.playNPause();
+            jBtnRed.setBackground(Color.RED);
+        }
+        if(output == 5)
+        {
+            jBtnBlue.setBackground(Color.WHITE);
+            toneG.playNPause();
+            jBtnBlue.setBackground(Color.BLUE);
+        }   
+        if(output == 7)
+        {
+            jBtnYellow.setBackground(Color.WHITE);
+            toneB.playNPause();
+            jBtnYellow.setBackground(Color.YELLOW);
+        }   
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -173,7 +208,7 @@ public class SimonSaysGUI extends javax.swing.JFrame
     private void jBtnGreenClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jBtnGreenClicked
     {//GEN-HEADEREND:event_jBtnGreenClicked
         // When green button clicked, play the related sound
-        MakeSound toneC = new MakeSound("file:C4_262Hz_1S.wav");
+        
         toneC.playSound();
         
         // If the game is PLAYING register it as input
@@ -189,7 +224,7 @@ public class SimonSaysGUI extends javax.swing.JFrame
     private void jBtnRedClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jBtnRedClicked
     {//GEN-HEADEREND:event_jBtnRedClicked
         // When red button clicked, play the related sound
-        final MakeSound toneE = new MakeSound("file:E4_330Hz_1S.wav");
+        
         toneE.playSound();
         
         // If the game is PLAYING register it as input
@@ -205,7 +240,7 @@ public class SimonSaysGUI extends javax.swing.JFrame
     private void jBtnBlueClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jBtnBlueClicked
     {//GEN-HEADEREND:event_jBtnBlueClicked
         // When blue button clicked, play the related sound
-        final MakeSound toneG = new MakeSound("file:G4_392Hz_1S.wav");
+        
         toneG.playSound();
         
         // If the game is PLAYING register it as input
@@ -221,7 +256,7 @@ public class SimonSaysGUI extends javax.swing.JFrame
     private void jBtnYellowClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jBtnYellowClicked
     {//GEN-HEADEREND:event_jBtnYellowClicked
         // When yellow button clicked, play the related sound
-        final MakeSound toneB = new MakeSound("file:B3_247Hz_1S.wav");
+        
         toneB.playSound();
         
         // If the game is PLAYING register it as input
