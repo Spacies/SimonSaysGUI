@@ -1,9 +1,16 @@
 
 package simonsays.gui;
 
+import java.awt.Color;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import simonsays.gameModel.Game;
+import simonsays.gameModel.GameEventListener;
 import simonsays.gameModel.GameState;
 import simonsays.gameModel.MakeSound;
+import simonsays.gameModel.Output;
 
 /**
  *
@@ -16,18 +23,86 @@ import simonsays.gameModel.MakeSound;
  * @modified 18/05/14 Jaimes
  *  Added start and exit to menu bar
  */
-public class SimonSaysGUI extends javax.swing.JFrame
+public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListener
 {
     final Game game;
+    final MakeSound toneC = new MakeSound("file:C4_262Hz_1S.wav");
+    final MakeSound toneE = new MakeSound("file:E4_330Hz_1S.wav");
+    final MakeSound toneG = new MakeSound("file:G4_392Hz_1S.wav");
+    final MakeSound toneB = new MakeSound("file:B3_247Hz_1S.wav");
+    private static SimonSaysGUI gui;
 
     /**
      * Creates new form SimonSaysGUINoImage
      */
-    public SimonSaysGUI(Game game)
+    private SimonSaysGUI(Game game)
     {
         this.game = game;
-        initComponents();
+        game.addGameEventListener(this);
+        initComponents();   
+        update();
     }
+    
+    public static synchronized SimonSaysGUI getSingletonSimonSaysGUI(Game game)
+    {
+        if(gui == null)
+        {
+            gui = new SimonSaysGUI(game);
+        }
+        return gui;
+    }
+    
+    @Override
+    public Object clone() throws CloneNotSupportedException
+    {
+        throw new CloneNotSupportedException();
+    }
+    
+    public void update()
+    {
+        //jBtnGreen.repaint();
+        //jBtnRed.repaint();
+        //jBtnYellow.repaint();
+        //jBtnBlue.repaint();
+        
+    }
+    
+    public void buttonOutput(List<Integer> outputList)
+    {
+        for (Integer output : outputList)
+        {
+            
+            if(output == 1)
+            {            
+                jBtnGreen.setBackground(Color.WHITE);
+                update();
+                toneC.playNPause();
+                jBtnGreen.setBackground(Color.GREEN);         
+            }
+            if(output == 3)
+            {
+                jBtnRed.setBackground(Color.WHITE);  
+                update();
+                toneE.playNPause();
+                jBtnRed.setBackground(Color.RED);
+            }
+            if(output == 5)
+            {
+                jBtnBlue.setBackground(Color.WHITE);
+                update();
+                toneG.playNPause();
+                jBtnBlue.setBackground(Color.BLUE);
+            }   
+            if(output == 7)
+            {
+                jBtnYellow.setBackground(Color.WHITE);
+                update();
+                toneB.playNPause();
+                jBtnYellow.setBackground(Color.YELLOW);
+            }  
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,8 +111,7 @@ public class SimonSaysGUI extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jpnlWindow = new javax.swing.JPanel();
         jPnlButtons = new javax.swing.JPanel();
@@ -46,7 +120,7 @@ public class SimonSaysGUI extends javax.swing.JFrame
         jBtnBlue = new javax.swing.JButton();
         jBtnYellow = new javax.swing.JButton();
         jPnlCentre = new javax.swing.JPanel();
-        jlblFeedback = new javax.swing.JLabel();
+        jBtnStart = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemStart = new javax.swing.JMenuItem();
@@ -56,74 +130,65 @@ public class SimonSaysGUI extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 800));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jpnlWindow.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jBtnGreen.setBackground(java.awt.Color.green);
         jBtnGreen.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jBtnGreen.setIgnoreRepaint(true);
-        jBtnGreen.setOpaque(true);
-        jBtnGreen.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        jBtnGreen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnGreenClicked(evt);
             }
         });
 
         jBtnRed.setBackground(java.awt.Color.red);
         jBtnRed.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jBtnRed.setIgnoreRepaint(true);
-        jBtnRed.setOpaque(true);
-        jBtnRed.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        jBtnRed.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnRedClicked(evt);
             }
         });
 
         jBtnBlue.setBackground(java.awt.Color.blue);
         jBtnBlue.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jBtnBlue.setOpaque(true);
-        jBtnBlue.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        jBtnBlue.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnBlueClicked(evt);
             }
         });
 
         jBtnYellow.setBackground(java.awt.Color.yellow);
         jBtnYellow.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jBtnYellow.setOpaque(true);
-        jBtnYellow.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        jBtnYellow.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnYellowClicked(evt);
             }
         });
 
         jPnlCentre.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jlblFeedback.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlblFeedback.setText("Feedback");
+        jBtnStart.setText("Start");
+        jBtnStart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jBtnStartMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPnlCentreLayout = new javax.swing.GroupLayout(jPnlCentre);
         jPnlCentre.setLayout(jPnlCentreLayout);
         jPnlCentreLayout.setHorizontalGroup(
             jPnlCentreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlCentreLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jlblFeedback, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(57, 57, 57)
+                .addComponent(jBtnStart)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         jPnlCentreLayout.setVerticalGroup(
             jPnlCentreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlCentreLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jlblFeedback, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(84, 84, 84)
+                .addComponent(jBtnStart)
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPnlButtonsLayout = new javax.swing.GroupLayout(jPnlButtons);
@@ -160,24 +225,7 @@ public class SimonSaysGUI extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jpnlWindowLayout = new javax.swing.GroupLayout(jpnlWindow);
-        jpnlWindow.setLayout(jpnlWindowLayout);
-        jpnlWindowLayout.setHorizontalGroup(
-            jpnlWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnlWindowLayout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
-                .addComponent(jPnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
-        );
-        jpnlWindowLayout.setVerticalGroup(
-            jpnlWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnlWindowLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jPnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jpnlWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 780));
+        jpnlWindow.add(jPnlButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 61, -1, -1));
 
         jMenu1.setText("File");
 
@@ -209,6 +257,17 @@ public class SimonSaysGUI extends javax.swing.JFrame
 
         setJMenuBar(jMenuBar1);
 
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpnlWindow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpnlWindow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -220,12 +279,18 @@ public class SimonSaysGUI extends javax.swing.JFrame
     private void jBtnGreenClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jBtnGreenClicked
     {//GEN-HEADEREND:event_jBtnGreenClicked
         // When green button clicked, play the related sound
-        MakeSound toneC = new MakeSound("file:C4_262Hz_1S.wav");
+        
         toneC.playSound();
         
         // If the game is PLAYING register it as input
         if (game.getState() == GameState.PLAYING)
-            game.getInput().getInputList().add(1);
+        {
+            game.getInput().addInput(1);
+            if(game.compareListSize())
+            {
+                game.compareInOutput();
+            }
+        }
     }//GEN-LAST:event_jBtnGreenClicked
 
     /**
@@ -236,12 +301,18 @@ public class SimonSaysGUI extends javax.swing.JFrame
     private void jBtnRedClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jBtnRedClicked
     {//GEN-HEADEREND:event_jBtnRedClicked
         // When red button clicked, play the related sound
-        final MakeSound toneE = new MakeSound("file:E4_330Hz_1S.wav");
+        
         toneE.playSound();
         
         // If the game is PLAYING register it as input
         if (game.getState() == GameState.PLAYING)
-            game.getInput().getInputList().add(3);
+        {
+            game.getInput().addInput(3);
+            if(game.compareListSize())
+            {
+                game.compareInOutput();
+            }
+        }
     }//GEN-LAST:event_jBtnRedClicked
 
     /**
@@ -252,12 +323,18 @@ public class SimonSaysGUI extends javax.swing.JFrame
     private void jBtnBlueClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jBtnBlueClicked
     {//GEN-HEADEREND:event_jBtnBlueClicked
         // When blue button clicked, play the related sound
-        final MakeSound toneG = new MakeSound("file:G4_392Hz_1S.wav");
+        
         toneG.playSound();
         
         // If the game is PLAYING register it as input
         if (game.getState() == GameState.PLAYING)
-            game.getInput().getInputList().add(5);
+        {
+            game.getInput().addInput(5);
+            if(game.compareListSize())
+            {
+                game.compareInOutput();
+            }
+        }
     }//GEN-LAST:event_jBtnBlueClicked
 
     /**
@@ -268,14 +345,32 @@ public class SimonSaysGUI extends javax.swing.JFrame
     private void jBtnYellowClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jBtnYellowClicked
     {//GEN-HEADEREND:event_jBtnYellowClicked
         // When yellow button clicked, play the related sound
-        final MakeSound toneB = new MakeSound("file:B3_247Hz_1S.wav");
+        
         toneB.playSound();
         
         // If the game is PLAYING register it as input
         if (game.getState() == GameState.PLAYING)
-            game.getInput().getInputList().add(7);
+        {
+            game.getInput().addInput(7);
+            if(game.compareListSize())
+            {
+                game.compareInOutput();
+            }
+                
+        }
     }//GEN-LAST:event_jBtnYellowClicked
 
+    private void jBtnStartMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnStartMousePressed
+        Thread tempThread = new Thread(new Runnable() 
+        {
+
+            @Override
+            public void run() {
+                game.startGame();
+            }
+        });
+        tempThread.start();  
+    }//GEN-LAST:event_jBtnStartMousePressed
     private void jMenuItemExitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemExitActionPerformed
     {//GEN-HEADEREND:event_jMenuItemExitActionPerformed
         // Exit when exit selected from menubar
@@ -334,6 +429,7 @@ public class SimonSaysGUI extends javax.swing.JFrame
     private javax.swing.JButton jBtnBlue;
     private javax.swing.JButton jBtnGreen;
     private javax.swing.JButton jBtnRed;
+    private javax.swing.JButton jBtnStart;
     private javax.swing.JButton jBtnYellow;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -346,4 +442,22 @@ public class SimonSaysGUI extends javax.swing.JFrame
     private javax.swing.JLabel jlblFeedback;
     private javax.swing.JPanel jpnlWindow;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void gameHasChanged() {
+        update();
+        //Checks if the game is currently lost
+        if ( game.getState() == GameState.GAMEOVER)
+        {
+            JOptionPane.showMessageDialog(null, "You have lost!", "Game Over!",JOptionPane.ERROR_MESSAGE);
+            //Restarts the game
+            //game.startGame();
+        }
+        if( game.getState() == GameState.WON)
+        {
+            JOptionPane.showMessageDialog(null, " The game made it through one round!", "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
+        }
+        System.exit(0);
+    }
+    
 }
