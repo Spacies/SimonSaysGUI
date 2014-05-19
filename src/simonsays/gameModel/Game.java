@@ -2,6 +2,7 @@ package simonsays.gameModel;
 
 import java.util.List;
 import java.util.Scanner;
+import simonsays.SimonSays;
 import simonsays.gui.SimonSaysGUI;
 
 /**
@@ -26,13 +27,14 @@ import simonsays.gui.SimonSaysGUI;
 public class Game 
 {    
     
-    private GameState state = GameState.STARTED;
-    private Output output;
+    private GameState state;
+    public Output output;
     private Input input;
     private int menuInput;
     private boolean firstRound = true;
     private Highscore highscore = new Highscore();
     private Difficulty difficulty = Difficulty.NORMAL;
+    private SimonSaysGUI gui;
     
     
     /**
@@ -41,11 +43,117 @@ public class Game
      */ 
     public Game() 
     {
-        // Play welcome tones to orient the player's ear
-        //output.playWelcomeSound();
+        state = GameState.STARTED;
+        output = new Output(difficulty);
+    }    
+    
+    public void startGame()
+    {
+        if(state==GameState.STARTED)
+        {
+            state = GameState.PLAYING;
+            //gui = SimonSays.getGUIInstance();
+        }
+        playGame();
         
-        //System.out.println("Welcome to Simon Says!");
+    }
+    
+    private void playGame()
+    {
+        gui = SimonSaysGUI.getSingletonSimonSaysGUI(this);
+        //Create an instance of the output and input 
+        if(firstRound)
+        {
+            //Create a new output object during first round
+            this.output = new Output(difficulty);  
+            //Set first round to false so new output is not created again
+            firstRound = false;
+        }
+        if(output.getOutputList().size()>3)
+        {
+            difficulty = Difficulty.HARD;
+            output.setDifficulty(difficulty);
+        }
+        //Begins printing relevant output and playing corresponding tones
+        output.produceOutput(gui);              
+        //gui.buttonOutput(output.getOutputList());
+
+        //Creates an input option passing the current output as a parameter
+        this.input = new Input(output, difficulty);
+        //Calculates whether the user has matched input or not
+        //if(output.getOutputList().size()==input.getInputList().size())
+        //{
+        //    boolean inputCorrect = compareInOutput();
+        //Conditional statement to be triggered once game is reported 
+        //as being lost
+        //    if(!inputCorrect)
+                //Changes game state to gameover when game lost
+        //        state=GameState.GAMEOVER;
+        //}
+    }
+    
+    /**
+    * Compares the game's input with the game's output. If they don't
+    * correlate, game ends.
+    * @return listsMatch true if the lists match, otherwise false.
+    */
+    protected boolean compareInOutput()
+    {
         
+        // Get game's output list.
+        List<Integer> outputList = output.getOutputList();
+        // Get game's input list.
+        List<Integer> inputList = input.getInputList();
+        
+        //Temporary statements for printing input and output as sense check
+        //System.out.println("InputList = " + inputList);
+        //System.out.println("OutputList = " + outputList);
+        
+        //Creates an initialises a boolean variable to compare output
+        boolean listsMatch = true;
+
+        // Compare input and output string
+        for (int element = 0; element < outputList.size(); element++)
+        {
+            // If not the same then end the game.
+            if (!(inputList.get(element).equals(outputList.get(element))))
+            {
+                listsMatch = false;               
+            }
+        }        
+        return listsMatch;
+    }  
+
+    /**
+     * Gets the current game state of this game object
+     * @return state The game's current game state
+     */
+    public GameState getState()
+    {
+        return this.state;
+    }
+
+    /**
+     * Gets this game's input object
+     * @return input The game's input object
+     */
+    public Input getInput()
+    {
+        return this.input;
+    }
+    
+    public Output getOutput()
+    {
+        return this.output;
+    }
+    
+    
+    
+    
+    
+    
+    /*
+    private void runGame(){
         // Check highscore table exists
         if (!highscore.highscoreExists())
             // Create highscore table if it doesn't exist
@@ -55,116 +163,19 @@ public class Game
         {
             //Create a user interface object 
             UserInterface cui = new UserInterface();
-            
-            // Create the game GUI
-            final SimonSaysGUI gui = new SimonSaysGUI(this);
 
-            // make the GUI visible
-            java.awt.EventQueue.invokeLater(new Runnable() 
-            {
-                @Override
-                public void run() 
-                {
-                    gui.setVisible(true);
-                }
-            });
-            
             //This loop contains code for producing a CUI menu and handling user
             //selections. This loop continues until the state is explicitly changed 
             //to either 'PLAYING' or 'QUIT'.
             while(state==GameState.STARTED)
             {
-                //Call cui method for generating menu
-                menuInput = cui.generateMenu();
-                //Perform relevant action upon user menu selection
-                //1 - Start Game, 2 - Print instructions, 3 - Print settings,
-                //4 - High scores, 5 - Exit game               
-                if(menuInput == 1)
-                {
-                    //Set state to playing, starting an instance of the game
-                    state=GameState.PLAYING;      
-                }
-                if(menuInput == 2)
-                {
-                    //Print a divider and instructions placeholder
-                    cui.printDivider();
-                    cui.printInstructions();
-                }
-                if(menuInput == 3)
-                {
-                    //Print a divider and settings placeholder
-                    cui.printDivider();
-                    difficulty = cui.changeSettings(difficulty);
-                }
-                if(menuInput == 4)
-                {
-                    //Print a divider and a high scores place holder
-                    cui.printDivider();
-                    //System.out.println("High score placeholder!"); 
-                    
-                    // If highscore table doesn't exist
-                    if (!highscore.highscoreExists())
-                    {
-                        //System.out.println("Table doesn't exist");
-                        
-                        //Create the highscore table
-                        highscore.createHighscoreTable();
-                    
-                    }
-                    
-                    // Print the highscore table
-                    highscore.printHighscore();
-                }
-                if(menuInput == 5)
-                {
-                    
-                    // Prompt to confirm player wants to quit
-                    System.out.println("Are you sure you want to exit the game?");
-                    System.out.println("Enter 5 to confirm exit, anything else to return to main menu.");
-                    System.out.print(">");
-
-                    Scanner inputScanner = new Scanner(System.in);
-                    String input = inputScanner.next();
-
-                    // Check whether the player wants to quit
-                    if (!input.equals("5"))
-                        // Doesn't want to quit, return to main menu
-                        state = GameState.STARTED;
-                    else
-                        //Change state to quit, terminating the program
-                        state=GameState.QUIT;
-
-                }
+                runMenu(cui);
             }
             //This loop continues producing output and receiving input until the
             //state is explicitly changed to 'GAMEOVER'.
             while(state==GameState.PLAYING)
             {
-                //Create an instance of the output and input 
-                if(firstRound)
-                {
-                    //Create a new output object during first round
-                    output = new Output(difficulty);  
-                    //Set first round to false so new output is not created again
-                    firstRound = false;
-                }
-                if(output.getOutputList().size()>3)
-                {
-                    difficulty = Difficulty.HARD;
-                    output.setDifficulty(difficulty);
-                }
-                //Begins printing relevant output and playing corresponding tones
-                output.produceOutput(gui);
-
-                //Creates an input option passing the current output as a parameter
-                input = new Input(output, difficulty);
-                //Calculates whether the user has matched input or not
-                boolean inputCorrect = compareInOutput();
-                //Conditional statement to be triggered once game is reported 
-                //as being lost
-                if(!inputCorrect)
-                    //Changes game state to gameover when game lost
-                    state=GameState.GAMEOVER;
+                playGame();
             }   
             //This loop will perform any operations required upon the game being 
             //lost
@@ -177,6 +188,65 @@ public class Game
         }
             
     }
+    
+    private void runMenu(UserInterface cui)
+    {
+        //Call cui method for generating menu
+          menuInput = cui.generateMenu();
+          //Perform relevant action upon user menu selection
+          //1 - Start Game, 2 - Print instructions, 3 - Print settings,
+          //4 - High scores, 5 - Exit game               
+          if(menuInput == 1)
+          {
+              //Set state to playing, starting an instance of the game
+              state=GameState.PLAYING;      
+          }
+          if(menuInput == 2)
+          {
+              //Print a divider and instructions placeholder
+              cui.printDivider();
+              cui.printInstructions();
+          }
+          if(menuInput == 3)
+          {
+              //Print a divider and settings placeholder
+              cui.printDivider();
+              difficulty = cui.changeSettings(difficulty);
+          }
+          if(menuInput == 4)
+          {
+              //Print a divider and a high scores place holder
+              cui.printDivider();
+              // If highscore table doesn't exist
+              if (!highscore.highscoreExists())
+              {
+                  //System.out.println("Table doesn't exist");
+                  //Create the highscore table
+                  highscore.createHighscoreTable();
+              }
+              // Print the highscore table
+              highscore.printHighscore();
+          }
+          if(menuInput == 5)
+          {
+              // Prompt to confirm player wants to quit
+              System.out.println("Are you sure you want to exit the game?");
+              System.out.println("Enter 5 to confirm exit, anything else to return to main menu.");
+              System.out.print(">");
+              Scanner inputScanner = new Scanner(System.in);
+              String inputPrompt = inputScanner.next();
+              // Check whether the player wants to quit
+              if (!inputPrompt.equals("5"))
+                  // Doesn't want to quit, return to main menu
+                  state = GameState.STARTED;
+              else
+                  //Change state to quit, terminating the program
+                  state=GameState.QUIT;
+
+        }
+    }
+    
+
     
     public void hasLost()
     {      
@@ -285,56 +355,10 @@ public class Game
         }
         state=GameState.STARTED;
     }
+    */
     
-    /**
-     * Compares the game's input with the game's output. If they don't
-     * correlate, game ends.
-     * @return listsMatch true if the lists match, otherwise false.
-     */
-    protected boolean compareInOutput()
-    {
-        
-        // Get game's output list.
-        List<Integer> outputList = output.getOutputList();
-        // Get game's input list.
-        List<Integer> inputList = input.getInputList();
-        
-        //Temporary statements for printing input and output as sense check
-        //System.out.println("InputList = " + inputList);
-        //System.out.println("OutputList = " + outputList);
-        
-        //Creates an initialises a boolean variable to compare output
-        boolean listsMatch = true;
+  
 
-        // Compare input and output string
-        for (int element = 0; element < outputList.size(); element++)
-        {
-            // If not the same then end the game.
-            if (!(inputList.get(element).equals(outputList.get(element))))
-            {
-                listsMatch = false;               
-            }
-        }        
-        return listsMatch;
-    }  
-
-    /**
-     * Gets the current game state of this game object
-     * @return state The game's current game state
-     */
-    public GameState getState()
-    {
-        return state;
-    }
-
-    /**
-     * Gets this game's input object
-     * @return input The game's input object
-     */
-    public Input getInput()
-    {
-        return input;
-    }
     
     
 }

@@ -57,12 +57,12 @@ public class Output
          // Add random int to outputList
          outputList.add(randomInt);
 
-
+         
          // Play and print outputList
          // 
          for (int element = 0; element < outputList.size(); element++)
          {
-            gui.buttonOutput(outputList.get(element));
+            gui.buttonOutput(outputList);
              /**
              if (outputList.get(element).equals(1))
             {

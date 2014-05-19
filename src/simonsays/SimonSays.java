@@ -10,8 +10,10 @@ import simonsays.gui.SimonSaysGUI;
  * @author Jaimes Booth & Sam McGarvey
  * @version 18/03/14
  */
-public class SimonSays {
-
+public class SimonSays 
+{
+   
+    
     /**
      * This is the main method of the SimonSays game
      * 
@@ -21,21 +23,21 @@ public class SimonSays {
         
         // Create the game object.
         final Game game = new Game();
-        
         // Currently handled in Game class, otherwise GUI not displayed until
         // CLI exits.
-//        // Create the game GUI
-//        final SimonSaysGUI gui = new SimonSaysGUI(game);
+//      // Create the game GUI
+        final SimonSaysGUI gui = SimonSaysGUI.getSingletonSimonSaysGUI(game);
+        
 //        
 //        // make the GUI visible
-//        java.awt.EventQueue.invokeLater(new Runnable() 
-//        {
-//            @Override
-//            public void run() 
-//            {
-//                gui.setVisible(true);
-//            }
-//        });
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
+            @Override
+           public void run() 
+           {
+               gui.setVisible(true);
+            }
+        });
     }
-    
-}
+}    
+
