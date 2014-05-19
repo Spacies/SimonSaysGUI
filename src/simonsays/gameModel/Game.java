@@ -40,6 +40,9 @@ public class Game
      */ 
     public Game() 
     {
+        output = new Output(difficulty);
+        input = new Input(output, difficulty);
+        
         // Play welcome tones to orient the player's ear
         //output.playWelcomeSound();
         
@@ -157,6 +160,7 @@ public class Game
 
                 //Creates an input option passing the current output as a parameter
                 input = new Input(output, difficulty);
+                System.out.println("Input created");
                 //Calculates whether the user has matched input or not
                 boolean inputCorrect = compareInOutput();
                 //Conditional statement to be triggered once game is reported 
@@ -327,12 +331,23 @@ public class Game
     }
 
     /**
+     * Sets the game state to the specified state.
+     * @param state 
+     */
+    public void setState(GameState state)
+    {
+        this.state = state;
+    }
+
+    
+    
+    /**
      * Gets this game's input object
      * @return input The game's input object
      */
     public Input getInput()
     {
-        return input;
+        return this.input;
     }
     
     

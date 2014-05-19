@@ -13,6 +13,8 @@ import simonsays.gameModel.MakeSound;
  *  Basic four coloured button GUI.
  *  Added mouse click event listeners on buttons to play tones and add to input
  *  list.
+ * @modified 18/05/14 Jaimes
+ *  Added start and exit to menu bar
  */
 public class SimonSaysGUI extends javax.swing.JFrame
 {
@@ -47,6 +49,9 @@ public class SimonSaysGUI extends javax.swing.JFrame
         jlblFeedback = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItemStart = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItemExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -175,6 +180,28 @@ public class SimonSaysGUI extends javax.swing.JFrame
         getContentPane().add(jpnlWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 780));
 
         jMenu1.setText("File");
+
+        jMenuItemStart.setText("Start");
+        jMenuItemStart.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItemStartActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemStart);
+        jMenu1.add(jSeparator1);
+
+        jMenuItemExit.setText("Exit");
+        jMenuItemExit.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItemExitActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemExit);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Help");
@@ -246,8 +273,20 @@ public class SimonSaysGUI extends javax.swing.JFrame
         
         // If the game is PLAYING register it as input
         if (game.getState() == GameState.PLAYING)
-            game.getInput().getInputList().add(5);
+            game.getInput().getInputList().add(7);
     }//GEN-LAST:event_jBtnYellowClicked
+
+    private void jMenuItemExitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemExitActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemExitActionPerformed
+        // Exit when exit selected from menubar
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItemExitActionPerformed
+
+    private void jMenuItemStartActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemStartActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemStartActionPerformed
+        //Set state to playing, starting an instance of the game
+        game.setState(GameState.PLAYING);
+    }//GEN-LAST:event_jMenuItemStartActionPerformed
 
     
     
@@ -299,8 +338,11 @@ public class SimonSaysGUI extends javax.swing.JFrame
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemExit;
+    private javax.swing.JMenuItem jMenuItemStart;
     private javax.swing.JPanel jPnlButtons;
     private javax.swing.JPanel jPnlCentre;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel jlblFeedback;
     private javax.swing.JPanel jpnlWindow;
     // End of variables declaration//GEN-END:variables
