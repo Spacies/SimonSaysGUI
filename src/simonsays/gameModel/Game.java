@@ -1,7 +1,9 @@
 package simonsays.gameModel;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import simonsays.SimonSays;
 import simonsays.gui.SimonSaysGUI;
 
@@ -31,10 +33,11 @@ public class Game
     public Output output;
     private Input input;
     private int menuInput;
-    private boolean firstRound = true;
+    private boolean firstRound;
     private Highscore highscore = new Highscore();
     private Difficulty difficulty = Difficulty.NORMAL;
     private SimonSaysGUI gui;
+    private Set<GameEventListener> eventListeners;
     
     
     /**
@@ -43,8 +46,9 @@ public class Game
      */ 
     public Game() 
     {
+        eventListeners = new HashSet<GameEventListener>();
         state = GameState.STARTED;
-        output = new Output(difficulty);
+        //output = new Output(difficulty);
     }    
     
     public void startGame()
@@ -52,8 +56,10 @@ public class Game
         if(state==GameState.STARTED)
         {
             state = GameState.PLAYING;
+            firstRound = true;
             //gui = SimonSays.getGUIInstance();
-        }
+        }    
+        //notifyListenersOfGameChange();
         playGame();
         
     }
@@ -90,6 +96,7 @@ public class Game
                 //Changes game state to gameover when game lost
         //        state=GameState.GAMEOVER;
         //}
+        //notifyListenersOfGameChange();
     }
     
     /**
@@ -97,7 +104,7 @@ public class Game
     * correlate, game ends.
     * @return listsMatch true if the lists match, otherwise false.
     */
-    protected boolean compareInOutput()
+    public void compareInOutput()
     {
         
         // Get game's output list.
@@ -110,19 +117,49 @@ public class Game
         //System.out.println("OutputList = " + outputList);
         
         //Creates an initialises a boolean variable to compare output
-        boolean listsMatch = true;
-
+        //boolean listsMatch = true;
+        this.state = GameState.WON;
         // Compare input and output string
         for (int element = 0; element < outputList.size(); element++)
         {
             // If not the same then end the game.
             if (!(inputList.get(element).equals(outputList.get(element))))
             {
-                listsMatch = false;               
+                this.state = GameState.GAMEOVER;           
             }
-        }        
-        return listsMatch;
-    }  
+        }      
+        notifyListenersOfGameChange();
+        
+    } 
+    
+     /**
+     * Adds a listener for game change events.
+     * @param l the listener to add
+     */
+    public void addGameEventListener(GameEventListener listener)
+    {
+        eventListeners.add(listener);
+    }
+
+    /**
+     * Removes a listener for game change events.
+     * @param l the listener to remove
+     */
+    public void removeGameEventListener(GameEventListener listener)
+    {
+        eventListeners.remove(listener);
+    }
+
+    /**
+     * Notify all world change listeners.
+     */
+    private void notifyListenersOfGameChange()
+    {
+        for (GameEventListener listener : eventListeners) 
+        {
+            listener.gameHasChanged();
+        }
+    }    
 
     /**
      * Gets the current game state of this game object
@@ -142,12 +179,16 @@ public class Game
         return this.input;
     }
     
+    
     public Output getOutput()
     {
         return this.output;
     }
     
-    
+    public boolean compareListSize()
+    {
+        return this.output.getOutputList().size()==this.input.getInputList().size();
+    }
     
     
     

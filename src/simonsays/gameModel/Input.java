@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 public class Input {
     // The input list of integers representing responses to the
     // game questions.
-    private List<Integer> inputList = new LinkedList<>();
+    private List<Integer> inputList;
     private Output output;
     private Difficulty difficulty;   
     
@@ -41,6 +41,7 @@ public class Input {
         
         this.output = output;
         this.difficulty = difficulty;
+        this.inputList = new LinkedList<>();
         //receiveInputTest();
     }
  
@@ -120,6 +121,11 @@ public class Input {
         
         return inputList;
         
+    }
+    
+    public void addInput(int input)
+    {
+        this.inputList.add(input);
     }
     
 } 

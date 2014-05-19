@@ -9,6 +9,7 @@ package simonsays.gameModel;
 public enum GameState 
 {
     STARTED,    //The game is starting/in menu
+    WON,
     PLAYING,    //The game is currently playing
     GAMEOVER,   //The game has been lost
     QUIT;       //The user wishes to quit the game
