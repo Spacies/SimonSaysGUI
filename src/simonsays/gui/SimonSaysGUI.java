@@ -40,7 +40,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         this.game = game;
         game.addGameEventListener(this);
         initComponents();   
-        update();
+        //update();
     }
     
     public static synchronized SimonSaysGUI getSingletonSimonSaysGUI(Game game)
@@ -58,15 +58,20 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         throw new CloneNotSupportedException();
     }
     
-    public void update()
-    {
-        //jBtnGreen.repaint();
-        //jBtnRed.repaint();
-        //jBtnYellow.repaint();
-        //jBtnBlue.repaint();
-        
-    }
+//    public void update()
+//    {
+//        //jBtnGreen.repaint();
+//        //jBtnRed.repaint();
+//        //jBtnYellow.repaint();
+//        //jBtnBlue.repaint();
+//        
+//    }
     
+    /**
+     * Iterates through the output list and plays the associated tones,
+     * flashing the associated buttons.
+     * @param outputList The list of integers representing output
+     */
     public void buttonOutput(List<Integer> outputList)
     {
         for (Integer output : outputList)
@@ -75,28 +80,28 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             if(output == 1)
             {            
                 jBtnGreen.setBackground(Color.WHITE);
-                update();
+                //update();
                 toneC.playNPause();
                 jBtnGreen.setBackground(Color.GREEN);         
             }
             if(output == 3)
             {
                 jBtnRed.setBackground(Color.WHITE);  
-                update();
+                //update();
                 toneE.playNPause();
                 jBtnRed.setBackground(Color.RED);
             }
             if(output == 5)
             {
                 jBtnBlue.setBackground(Color.WHITE);
-                update();
+                //update();
                 toneG.playNPause();
                 jBtnBlue.setBackground(Color.BLUE);
             }   
             if(output == 7)
             {
                 jBtnYellow.setBackground(Color.WHITE);
-                update();
+                //update();
                 toneB.playNPause();
                 jBtnYellow.setBackground(Color.YELLOW);
             }  
@@ -130,6 +135,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Simon Says");
         setPreferredSize(new java.awt.Dimension(800, 800));
 
         jpnlWindow.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -230,8 +236,8 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
                 .addContainerGap()
                 .addComponent(jBtnGreen, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBtnYellow, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtnYellow, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
                     .addGroup(jPnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jBtnRed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPnlCentre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -375,6 +381,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         }
     }//GEN-LAST:event_jBtnYellowClicked
 
+    
     private void jBtnStartMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnStartMousePressed
         Thread tempThread = new Thread(new Runnable() 
         {
@@ -395,7 +402,15 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     private void jMenuItemStartActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemStartActionPerformed
     {//GEN-HEADEREND:event_jMenuItemStartActionPerformed
         //Set state to playing, starting an instance of the game
-        //game.setState(GameState.PLAYING);
+        Thread tempThread = new Thread(new Runnable() 
+        {
+
+            @Override
+            public void run() {
+                game.startGame();
+            }
+        });
+        tempThread.start(); 
     }//GEN-LAST:event_jMenuItemStartActionPerformed
 
     
@@ -459,7 +474,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
     @Override
     public void gameHasChanged() {
-        update();
+        //update();
         //Checks if the game is currently lost
         if ( game.getState() == GameState.GAMEOVER)
         {
