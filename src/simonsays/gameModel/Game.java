@@ -16,18 +16,21 @@ import simonsays.gui.SimonSaysGUI;
  * @modified 24/03/2014
  *  Modified game to use game states
  *  Added compareInOutput()
- * @modified 05/04/13 Jaimes
+ * @modified 05/04/14 Jaimes
  *  Added calls to Highscore in Game() and hasLost()
- * @modified 08/04/13 Jaimes
+ * @modified 08/04/14 Jaimes
  *  Added confirmation prompt when entering highscore in hasLost()
  *  Added confirmation prompt before exit
- * @modified 14/05/13 Jaimes
+ * @modified 14/05/14 Jaimes
  *  Added getGameState()
  *  Call to GUI in Game()
+ * @modified 19/05/14 Jaimes
+ *  Refactored Game class to a singleton pattern
  * 
  */
 public class Game 
 {    
+    
     
     private GameState state;
     public Output output;
@@ -38,18 +41,50 @@ public class Game
     private Difficulty difficulty = Difficulty.NORMAL;
     private SimonSaysGUI gui;
     private Set<GameEventListener> eventListeners;
+    private static Game game;
     
     
     /**
      * A new instance of Simon Says that begins producing output and 
-     * accepting input
+     * accepting input. Only one instance of the game object can be
+     * instantiated (singleton)
      */ 
-    public Game() 
+    private Game() 
     {
         eventListeners = new HashSet<GameEventListener>();
         state = GameState.STARTED;
         //output = new Output(difficulty);
-    }    
+    }   
+    
+    
+    /**
+     * Gets the current Game object, creates one if it does not exist.
+     * @return game This Game object
+     */
+    public static synchronized Game getGameObject()
+    {
+        
+        if (game == null) 
+        { 
+            game = new Game(); 
+        } 
+        
+        return game;
+        
+    }
+    
+    
+    /**
+     * Overide the clone method to prevent cloning of this singleton
+     * object.
+     * @throws CloneNotSupportedException 
+     */
+    @Override
+    public Object clone() throws CloneNotSupportedException 
+    {
+       throw new CloneNotSupportedException();
+    }
+
     
     public void startGame()
     {
@@ -64,7 +99,7 @@ public class Game
         
     }
     
-    private void playGame()
+    public void playGame()
     {
         gui = SimonSaysGUI.getSingletonSimonSaysGUI(this);
         //Create an instance of the output and input 
@@ -102,7 +137,7 @@ public class Game
     /**
     * Compares the game's input with the game's output. If they don't
     * correlate, game ends.
-    * @return listsMatch true if the lists match, otherwise false.
+    * @return listsMatch True if the lists match, otherwise false.
     */
     public void compareInOutput()
     {

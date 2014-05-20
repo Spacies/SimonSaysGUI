@@ -22,7 +22,7 @@ public class SimonSays
     public static void main(String[] args) {
         
         // Create the game object.
-        final Game game = new Game();
+        final Game game = Game.getGameObject();
         // Currently handled in Game class, otherwise GUI not displayed until
         // CLI exits.
 //      // Create the game GUI

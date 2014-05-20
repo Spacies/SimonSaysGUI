@@ -14,12 +14,17 @@ import java.util.logging.Logger;
  * @modified 07/06/14 Jaimes
  *  New score now inserts correctly into Highscore
  *  Prettied up the highscore print out
+ * @modified 20/05/14
+ *  Changed database connection to use embedded driver.
  */
 public class Highscore
 {
     
     Connection conn = null;
-    String url = "jdbc:derby://localhost:1527/SimonSaysDB";  //url of the DB host
+    // Network driver connection
+    //String url = "jdbc:derby://localhost:1527/SimonSaysDB";  //url of the DB host
+    // Embedded driver connection
+    String url = "jdbc:derby:SimonSaysDB;create=true";  //url of the DB host
     String username = "simonsays";  //your DB username
     String password = "simonsays";   //your DB password
 
@@ -40,32 +45,13 @@ public class Highscore
         }
         catch(SQLException ex) 
         {
-            System.err.println("SQLException: " + ex.getMessage());
+            System.out.println("Please manually connect to the SimonSaysDB via the NetBeans Services pane");
+            System.out.println("before running this application.");
+            System.exit(0);
+            //System.err.println("SQLException: " + ex.getMessage());
         }
     }
     
-    
-    //Currently not used
-//    /**
-//     * Connects to the SimonSays database.
-//     */
-//    public void connectSimonSaysDB()
-//    {
-//        try
-//        {
-//            // Creates instance of a Connection object
-//            conn = DriverManager.getConnection(url, username, password);
-//            
-//            // Notify of DB connection
-//            System.out.println(url + " connected...");
-//
-//
-//        }
-//        catch(SQLException ex) 
-//        {
-//            System.err.println("SQLException: " + ex.getMessage());
-//        }
-//    }
 
     /**
      * Checks whether a highscore table exists

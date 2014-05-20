@@ -111,7 +111,8 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jpnlWindow = new javax.swing.JPanel();
         jPnlButtons = new javax.swing.JPanel();
@@ -135,32 +136,44 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
         jBtnGreen.setBackground(java.awt.Color.green);
         jBtnGreen.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jBtnGreen.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jBtnGreen.setOpaque(true);
+        jBtnGreen.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jBtnGreenClicked(evt);
             }
         });
 
         jBtnRed.setBackground(java.awt.Color.red);
         jBtnRed.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jBtnRed.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jBtnRed.setOpaque(true);
+        jBtnRed.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jBtnRedClicked(evt);
             }
         });
 
         jBtnBlue.setBackground(java.awt.Color.blue);
         jBtnBlue.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jBtnBlue.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jBtnBlue.setOpaque(true);
+        jBtnBlue.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jBtnBlueClicked(evt);
             }
         });
 
         jBtnYellow.setBackground(java.awt.Color.yellow);
         jBtnYellow.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jBtnYellow.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jBtnYellow.setOpaque(true);
+        jBtnYellow.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jBtnYellowClicked(evt);
             }
         });
@@ -168,8 +181,10 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jPnlCentre.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jBtnStart.setText("Start");
-        jBtnStart.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+        jBtnStart.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mousePressed(java.awt.event.MouseEvent evt)
+            {
                 jBtnStartMousePressed(evt);
             }
         });
@@ -380,7 +395,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     private void jMenuItemStartActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemStartActionPerformed
     {//GEN-HEADEREND:event_jMenuItemStartActionPerformed
         //Set state to playing, starting an instance of the game
-        game.setState(GameState.PLAYING);
+        //game.setState(GameState.PLAYING);
     }//GEN-LAST:event_jMenuItemStartActionPerformed
 
     
@@ -439,7 +454,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     private javax.swing.JPanel jPnlButtons;
     private javax.swing.JPanel jPnlCentre;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JLabel jlblFeedback;
     private javax.swing.JPanel jpnlWindow;
     // End of variables declaration//GEN-END:variables
 
@@ -456,6 +470,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         if( game.getState() == GameState.WON)
         {
             JOptionPane.showMessageDialog(null, " The game made it through one round!", "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
+            //game.playGame();
         }
         System.exit(0);
     }
