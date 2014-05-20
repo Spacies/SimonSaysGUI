@@ -21,6 +21,7 @@ public class Output
     private MakeSound keySound; // The sound made when a key is pressed.
     private Difficulty difficulty;
     
+    
     // The four game tones
     final MakeSound toneC = new MakeSound("file:C4_262Hz_1S.wav");
     final MakeSound toneE = new MakeSound("file:E4_330Hz_1S.wav");
@@ -45,11 +46,11 @@ public class Output
     public void produceOutput(SimonSaysGUI gui)
     {
         //Calling the outputCountDown method to check how it prints
-         if(firstRound)
-         {
+        // if(firstRound)
+         //{
              outputCountDown();
-             firstRound = false;
-         }
+             //firstRound = false;
+         //}
 
          // Generate a random int (to associate with a random tone)
          int randomInt = randomIntGenerator.generateRandomInt();
@@ -60,8 +61,8 @@ public class Output
          
          // Play and print outputList
          // 
-         for (int element = 0; element < outputList.size(); element++)
-         {
+         //for (int element = 0; element < outputList.size(); element++)
+         //{
             gui.buttonOutput(outputList);
              /**
              if (outputList.get(element).equals(1))
@@ -103,7 +104,7 @@ public class Output
                 System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); 
              }
              */
-         }
+         //}
           
     }
     

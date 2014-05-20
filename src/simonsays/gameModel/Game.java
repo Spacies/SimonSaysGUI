@@ -33,7 +33,7 @@ public class Game
     
     
     private GameState state;
-    public Output output;
+    private Output output;
     private Input input;
     private int menuInput;
     private boolean firstRound;
@@ -89,18 +89,19 @@ public class Game
     public void startGame()
     {
         if(state==GameState.STARTED)
-        {
-            state = GameState.PLAYING;
-            firstRound = true;
+      {
+           state = GameState.PLAYING;
+           firstRound = true;
             //gui = SimonSays.getGUIInstance();
         }    
-        //notifyListenersOfGameChange();
+        notifyListenersOfGameChange();
         playGame();
         
     }
     
     public void playGame()
     {
+        state = GameState.PLAYING;
         gui = SimonSaysGUI.getSingletonSimonSaysGUI(this);
         //Create an instance of the output and input 
         if(firstRound)
@@ -143,9 +144,9 @@ public class Game
     {
         
         // Get game's output list.
-        List<Integer> outputList = output.getOutputList();
+        List<Integer> outputListCompare = output.getOutputList();
         // Get game's input list.
-        List<Integer> inputList = input.getInputList();
+        List<Integer> inputListCompare = input.getInputList();
         
         //Temporary statements for printing input and output as sense check
         //System.out.println("InputList = " + inputList);
@@ -155,12 +156,13 @@ public class Game
         //boolean listsMatch = true;
         this.state = GameState.WON;
         // Compare input and output string
-        for (int element = 0; element < outputList.size(); element++)
+        for (int element = 0; element < outputListCompare.size(); element++)
         {
             // If not the same then end the game.
-            if (!(inputList.get(element).equals(outputList.get(element))))
+            if (!(inputListCompare.get(element).equals(outputListCompare.get(element))))
             {
-                this.state = GameState.GAMEOVER;           
+                this.state = GameState.GAMEOVER;   
+                firstRound = true;
             }
         }      
         notifyListenersOfGameChange();
@@ -204,6 +206,11 @@ public class Game
     {
         return this.state;
     }
+    
+    public void setState(GameState state)
+    {
+        this.state = state;
+    }
 
     /**
      * Gets this game's input object
@@ -222,7 +229,7 @@ public class Game
     
     public boolean compareListSize()
     {
-        return this.output.getOutputList().size()==this.input.getInputList().size();
+        return output.getOutputList().size()==input.getInputList().size();
     }
     
     
