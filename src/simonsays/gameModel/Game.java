@@ -95,13 +95,13 @@ public class Game
             //gui = SimonSays.getGUIInstance();
         }    
         notifyListenersOfGameChange();
-        playGame();
+        //playGame();
         
     }
     
     public void playGame()
     {
-        state = GameState.PLAYING;
+        //state = GameState.PLAYING;
         gui = SimonSaysGUI.getSingletonSimonSaysGUI(this);
         //Create an instance of the output and input 
         if(firstRound)

@@ -61,10 +61,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     
     public void update()
     {
-        //jBtnGreen.repaint();
-        //jBtnRed.repaint();
-        //jBtnYellow.repaint();
-        //jBtnBlue.repaint();
+
         
     }
     
@@ -356,7 +353,8 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     private void jMenuItemStartActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemStartActionPerformed
     {//GEN-HEADEREND:event_jMenuItemStartActionPerformed
         //Set state to playing, starting an instance of the game
-        //game.setState(GameState.PLAYING);
+        game.setState(GameState.PLAYING);
+        gameHasChanged();
     }//GEN-LAST:event_jMenuItemStartActionPerformed
 
     
@@ -422,16 +420,12 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     public void gameHasChanged() {
         update();
         //Checks if the game is currently lost
-        if ( game.getState() == GameState.GAMEOVER)
+        if(game.getState()==GameState.STARTED)
         {
-            JOptionPane.showMessageDialog(null, "You have lost!", "Game Over!",JOptionPane.ERROR_MESSAGE);
-            //Restarts the game
-            //game.startGame();
+            game.startGame();       
         }
-        if( game.getState() == GameState.WON)
-        {           
-            //JOptionPane.showMessageDialog(null, " The game made it through one round!", "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
-            //game.setState(GameState.PLAYING);
+        if(game.getState()==GameState.PLAYING)
+        {
             this.outputThread = new Thread(new Runnable() 
             {
 
@@ -444,7 +438,16 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             });
             outputThread.start(); 
         }
-        //System.exit(0);
+        if (game.getState()==GameState.GAMEOVER)
+        {
+            JOptionPane.showMessageDialog(null, "You have lost!", "Game Over!",JOptionPane.ERROR_MESSAGE);
+            game.setState(GameState.STARTED);
+        }
+        if(game.getState()==GameState.WON)
+        {           
+            game.setState(GameState.PLAYING);
+            gameHasChanged();
+        }
     }
     
 }
