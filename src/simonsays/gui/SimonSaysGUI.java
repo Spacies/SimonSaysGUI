@@ -41,7 +41,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         this.game = game;
         game.addGameEventListener(this);
         initComponents();   
-        update();
+        //update();
     }
     
     public static synchronized SimonSaysGUI getSingletonSimonSaysGUI(Game game)
@@ -69,6 +69,11 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         
     }
     
+    /**
+     * Iterates through the output list and plays the associated tones,
+     * flashing the associated buttons.
+     * @param outputList The list of integers representing output
+     */
     public void buttonOutput(List<Integer> outputList)
     {
         //Iterates through the output list passed as arguement
@@ -132,6 +137,8 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Simon Says");
+        setPreferredSize(new java.awt.Dimension(800, 800));
 
         jpnlWindow.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -196,6 +203,40 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             .addGroup(jPnlCentreLayout.createSequentialGroup()
                 .addGap(93, 93, 93)
                 .addComponent(jBtnStart)
+                .addContainerGap(102, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPnlButtonsLayout = new javax.swing.GroupLayout(jPnlButtons);
+        jPnlButtons.setLayout(jPnlButtonsLayout);
+        jPnlButtonsLayout.setHorizontalGroup(
+            jPnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlButtonsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jBtnYellow, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPnlCentre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnGreen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jBtnBlue, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPnlButtonsLayout.createSequentialGroup()
+                        .addGap(218, 218, 218)
+                        .addComponent(jBtnRed, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPnlButtonsLayout.setVerticalGroup(
+            jPnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlButtonsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jBtnGreen, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtnYellow, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                    .addGroup(jPnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jBtnRed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPnlCentre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(jBtnBlue, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 

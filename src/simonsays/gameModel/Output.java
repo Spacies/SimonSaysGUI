@@ -52,11 +52,11 @@ public class Output
              //firstRound = false;
          //}
 
-         // Generate a random int (to associate with a random tone)
-         int randomInt = randomIntGenerator.generateRandomInt();
+        // Generate a random int (to associate with a random tone)
+        int randomInt = randomIntGenerator.generateRandomInt();
 
-         // Add random int to outputList
-         outputList.add(randomInt);
+        // Add random int to outputList
+        outputList.add(randomInt);
 
          
          // Play and print outputList

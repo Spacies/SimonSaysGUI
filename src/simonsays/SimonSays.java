@@ -23,13 +23,12 @@ public class SimonSays
         
         // Create the game object.
         final Game game = Game.getGameObject();
-        // Currently handled in Game class, otherwise GUI not displayed until
-        // CLI exits.
-//      // Create the game GUI
+
+        // Create the game GUI
         final SimonSaysGUI gui = SimonSaysGUI.getSingletonSimonSaysGUI(game);
         
-//        
-//        // make the GUI visible
+       
+        // make the GUI visible
         java.awt.EventQueue.invokeLater(new Runnable() 
         {
             @Override
