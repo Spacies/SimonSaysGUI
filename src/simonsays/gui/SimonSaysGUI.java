@@ -61,15 +61,20 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     
     public void update()
     {
-
+        //Sets start button to enabled by default
+        jBtnStart.setEnabled(true);
+        //Sets start button to disabled if game is in any state except "Started"
+        if(game.getState()!=GameState.STARTED)
+            jBtnStart.setEnabled(false);
         
     }
     
     public void buttonOutput(List<Integer> outputList)
     {
+        //Iterates through the output list passed as arguement
         for (int element = 0; element < outputList.size(); element++)
         {
-            
+            //Checks value at each index and produces appropriate tone/button flash
             if(outputList.get(element).equals(1))
             {            
                 jBtnGreen.setBackground(Color.WHITE);
@@ -134,36 +139,36 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
         jBtnGreen.setBackground(java.awt.Color.green);
         jBtnGreen.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jBtnGreen.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jBtnGreenClicked(evt);
+        jBtnGreen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnGreenActionPerformed(evt);
             }
         });
         jPnlButtons.add(jBtnGreen, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 11, 200, 200));
 
         jBtnRed.setBackground(java.awt.Color.red);
         jBtnRed.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jBtnRed.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jBtnRedClicked(evt);
+        jBtnRed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnRedActionPerformed(evt);
             }
         });
         jPnlButtons.add(jBtnRed, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 229, 200, 213));
 
         jBtnBlue.setBackground(java.awt.Color.blue);
         jBtnBlue.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jBtnBlue.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jBtnBlueClicked(evt);
+        jBtnBlue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnBlueActionPerformed(evt);
             }
         });
         jPnlButtons.add(jBtnBlue, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 460, 200, 200));
 
         jBtnYellow.setBackground(java.awt.Color.yellow);
         jBtnYellow.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jBtnYellow.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jBtnYellowClicked(evt);
+        jBtnYellow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnYellowActionPerformed(evt);
             }
         });
         jPnlButtons.add(jBtnYellow, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 229, 200, 213));
@@ -171,9 +176,9 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jPnlCentre.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jBtnStart.setText("Start");
-        jBtnStart.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jBtnStartMousePressed(evt);
+        jBtnStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnStartActionPerformed(evt);
             }
         });
 
@@ -242,108 +247,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Plays the associated tone when the green button is pressed and adds the 
-     * input to the input list if the game is playing.
-     * @param evt The mouse click to listen for
-     */
-    private void jBtnGreenClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jBtnGreenClicked
-    {//GEN-HEADEREND:event_jBtnGreenClicked
-        // When green button clicked, play the related sound
-        
-        toneC.playSound();
-        
-        // If the game is PLAYING register it as input
-        if (game.getState() == GameState.PLAYING)
-        {
-            game.getInput().addInput(1);
-            if(game.compareListSize())
-            {
-                game.compareInOutput();
-            }
-        }
-    }//GEN-LAST:event_jBtnGreenClicked
-
-    /**
-     * Plays the associated tone when the red button is pressed and adds the 
-     * input to the input list if the game is playing.
-     * @param evt The mouse click to listen for
-     */
-    private void jBtnRedClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jBtnRedClicked
-    {//GEN-HEADEREND:event_jBtnRedClicked
-        // When red button clicked, play the related sound
-        
-        toneE.playSound();
-        
-        // If the game is PLAYING register it as input
-        if (game.getState() == GameState.PLAYING)
-        {
-            game.getInput().addInput(3);
-            if(game.compareListSize())
-            {
-                game.compareInOutput();
-            }
-        }
-    }//GEN-LAST:event_jBtnRedClicked
-
-    /**
-     * Plays the associated tone when the blue button is pressed and adds the 
-     * input to the input list if the game is playing.
-     * @param evt The mouse click to listen for
-     */
-    private void jBtnBlueClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jBtnBlueClicked
-    {//GEN-HEADEREND:event_jBtnBlueClicked
-        // When blue button clicked, play the related sound
-        
-        toneG.playSound();
-        
-        // If the game is PLAYING register it as input
-        if (game.getState() == GameState.PLAYING)
-        {
-            game.getInput().addInput(5);
-            if(game.compareListSize())
-            {
-                game.compareInOutput();
-            }
-        }
-    }//GEN-LAST:event_jBtnBlueClicked
-
-    /**
-     * Plays the associated tone when the yellow button is pressed and adds the 
-     * input to the input list if the game is playing.
-     * @param evt The mouse click to listen for
-     */
-    private void jBtnYellowClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jBtnYellowClicked
-    {//GEN-HEADEREND:event_jBtnYellowClicked
-        // When yellow button clicked, play the related sound
-        
-        toneB.playSound();
-        
-        // If the game is PLAYING register it as input
-        if (game.getState() == GameState.PLAYING)
-        {
-            game.getInput().addInput(7);
-            if(game.compareListSize())
-            {
-                game.compareInOutput();
-            }
-                
-        }
-    }//GEN-LAST:event_jBtnYellowClicked
-
-    private void jBtnStartMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnStartMousePressed
-        this.outputThread = new Thread(new Runnable() 
-        {
-
-            @Override
-            public void run() 
-            {
-                    game.startGame();       
-            }
-        });
-        outputThread.start();  
-
-    }//GEN-LAST:event_jBtnStartMousePressed
     private void jMenuItemExitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemExitActionPerformed
     {//GEN-HEADEREND:event_jMenuItemExitActionPerformed
         // Exit when exit selected from menubar
@@ -356,6 +259,80 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         game.setState(GameState.PLAYING);
         gameHasChanged();
     }//GEN-LAST:event_jMenuItemStartActionPerformed
+
+    private void jBtnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnStartActionPerformed
+        //Starts game when button is pressed
+        game.startGame();
+    }//GEN-LAST:event_jBtnStartActionPerformed
+
+    private void jBtnGreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGreenActionPerformed
+        // When green button clicked, play the related sound
+        
+        toneC.playSound();
+        
+        // If the game is PLAYING register it as input
+        if (game.getState() == GameState.PLAYING)
+        {
+            game.getInput().addInput(1);
+            //If output list and input list have equal size compare lists
+            if(game.compareListSize())
+            {
+                game.compareInOutput();
+            }
+        }
+    }//GEN-LAST:event_jBtnGreenActionPerformed
+
+    private void jBtnYellowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnYellowActionPerformed
+         // When yellow button clicked, play the related sound
+        
+        toneB.playSound();
+        
+        // If the game is PLAYING register it as input
+        if (game.getState() == GameState.PLAYING)
+        {
+            game.getInput().addInput(7);
+            //If output list and input list have equal size compare lists
+            if(game.compareListSize())
+            {
+                game.compareInOutput();
+            }
+                
+        }       // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnYellowActionPerformed
+
+    private void jBtnBlueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBlueActionPerformed
+        // When blue button clicked, play the related sound
+        
+        toneG.playSound();
+        
+        // If the game is PLAYING register it as input
+        if (game.getState() == GameState.PLAYING)
+        {
+            game.getInput().addInput(5);
+            //If output list and input list have equal size compare lists
+            if(game.compareListSize())
+            {
+                game.compareInOutput();
+            }
+        }
+    }//GEN-LAST:event_jBtnBlueActionPerformed
+
+    private void jBtnRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRedActionPerformed
+        // When red button clicked, play the related sound
+        
+        toneE.playSound();
+        
+        // If the game is PLAYING register it as input
+        if (game.getState() == GameState.PLAYING)
+        {
+            game.getInput().addInput(3);
+            //If output list and input list have equal size compare lists
+            if(game.compareListSize())
+            {
+                game.compareInOutput();
+            }
+        }
+    }//GEN-LAST:event_jBtnRedActionPerformed
 
     
     
@@ -418,36 +395,48 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
     @Override
     public void gameHasChanged() {
-        update();
-        //Checks if the game is currently lost
+        //update();
+        //Checks if the game is in started state
         if(game.getState()==GameState.STARTED)
         {
+            //If the game is started, then begin the game
             game.startGame();       
         }
+        //Checks if game is in playing state
         if(game.getState()==GameState.PLAYING)
         {
+            //Creates a seperate thread to run the game play on
             this.outputThread = new Thread(new Runnable() 
             {
 
                 @Override
                 public void run() 
                 {
-                        
+                        //Starts playing the game on the new thread
                         game.playGame();       
                 }
             });
+            //Starts the thread
             outputThread.start(); 
         }
+        //Checks if the game is in game over state
         if (game.getState()==GameState.GAMEOVER)
         {
+            //Shows a temporary dialog box stating loss
             JOptionPane.showMessageDialog(null, "You have lost!", "Game Over!",JOptionPane.ERROR_MESSAGE);
+            //Puts the game back into the started state.
             game.setState(GameState.STARTED);
         }
+        //Checks to see if the game is in won state
         if(game.getState()==GameState.WON)
         {           
+           //Sets the game state back to playing
             game.setState(GameState.PLAYING);
+            //Notifies change listner that game is playing to resume the game
             gameHasChanged();
         }
+        //Calls the update method to update the UI
+        update();
     }
     
 }
