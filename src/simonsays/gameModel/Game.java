@@ -50,6 +50,7 @@ public class Game
     {
         this.highscore = new Highscore();
         //eventListeners = new HashSet<GameEventListener>();
+        // Stores a list of game changes
         eventListeners = new HashSet<>();
         state = GameState.STARTED;
         //output = new Output(difficulty);
