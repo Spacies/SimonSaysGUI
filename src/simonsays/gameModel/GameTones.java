@@ -26,5 +26,25 @@ public class GameTones
     {
         
     }
+
+    public MakeSound getToneC()
+    {
+        return toneC;
+    }
+
+    public MakeSound getToneE()
+    {
+        return toneE;
+    }
+
+    public MakeSound getToneG()
+    {
+        return toneG;
+    }
+
+    public MakeSound getToneB()
+    {
+        return toneB;
+    }
      
 }
