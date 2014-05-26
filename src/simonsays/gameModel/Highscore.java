@@ -22,9 +22,9 @@ public class Highscore
     
     Connection conn = null;
     // Network driver connection
-    String url = "jdbc:derby://localhost:1527/SimonSaysDB";  //url of the DB host
+    //String url = "jdbc:derby://localhost:1527/SimonSaysDB";  //url of the DB host
     // Embedded driver connection
-    //String url = "jdbc:derby:SimonSaysDB;create=true";  //url of the DB host
+    String url = "jdbc:derby:SimonSaysDB;create=true";  //url of the DB host
     String username = "simonsays";  //your DB username
     String password = "simonsays";   //your DB password
 

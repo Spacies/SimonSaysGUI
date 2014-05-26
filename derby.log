@@ -1,31 +1,10 @@
-Thu May 08 20:44:02 NZST 2014 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Thu May 08 20:44:02 NZST 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0145-db00-eeef-00004713ac3c 
-on database directory C:\Users\Sam\Documents\NetBeansProjects\SimonSays\SimonSaysDB  with class loader sun.misc.Launcher$AppClassLoader@779c86c5 
-Loaded from file:/C:/Users/Sam/Documents/NetBeansProjects/SimonSays/javadb/lib/derby.jar
+Fri May 23 08:49:18 NZST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0146-25b1-f4d8-000003f97250 
+on database directory /Users/jaimesbooth/NetBeansProjects/SimonSaysGUI/SimonSaysDB  with class loader sun.misc.Launcher$AppClassLoader@9cc3baa 
+Loaded from file:/Users/jaimesbooth/NetBeansProjects/SimonSays/javadb/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_51-b13
-user.dir=C:\Users\Sam\Documents\NetBeansProjects\SimonSays\javadb
-derby.system.home=C:\Users\Sam\Documents\NetBeansProjects\SimonSays
+java.runtime.version=1.7.0_25-b15
+user.dir=/Users/jaimesbooth/NetBeansProjects/SimonSaysGUI
+derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Thu May 08 20:44:03 NZST 2014:
-Shutting down instance a816c00e-0145-db00-eeef-00004713ac3c on database directory C:\Users\Sam\Documents\NetBeansProjects\SimonSays\SimonSaysDB with class loader sun.misc.Launcher$AppClassLoader@779c86c5 
-Thu May 08 20:44:03 NZST 2014 Thread[DRDAConnThread_4,5,main] (DATABASE = SimonSaysDB), (DRDAID = {2}), Database 'SimonSaysDB' shutdown.
-----------------------------------------------------------------
-Thu May 08 20:44:14 NZST 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance 45b300a8-0145-db00-eeef-00004713ac3c 
-on database directory C:\Users\Sam\Documents\NetBeansProjects\SimonSays\SimonSaysDB  with class loader sun.misc.Launcher$AppClassLoader@779c86c5 
-Loaded from file:/C:/Users/Sam/Documents/NetBeansProjects/SimonSays/javadb/lib/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_51-b13
-user.dir=C:\Users\Sam\Documents\NetBeansProjects\SimonSays\javadb
-derby.system.home=C:\Users\Sam\Documents\NetBeansProjects\SimonSays
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Thu May 08 22:59:50 NZST 2014: Shutting down Derby engine
-----------------------------------------------------------------
-Thu May 08 22:59:50 NZST 2014:
-Shutting down instance 45b300a8-0145-db00-eeef-00004713ac3c on database directory C:\Users\Sam\Documents\NetBeansProjects\SimonSays\SimonSaysDB with class loader sun.misc.Launcher$AppClassLoader@779c86c5 
-----------------------------------------------------------------

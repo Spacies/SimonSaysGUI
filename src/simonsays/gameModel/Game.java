@@ -2,9 +2,7 @@ package simonsays.gameModel;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
-import simonsays.SimonSays;
 import simonsays.gui.SimonSaysGUI;
 
 /**
@@ -31,16 +29,15 @@ import simonsays.gui.SimonSaysGUI;
 public class Game 
 {    
     
-    
     private GameState state;
     private Output output;
     private Input input;
     private int menuInput;
     private boolean firstRound;
-    private Highscore highscore = new Highscore();
+    final Highscore highscore;
     private Difficulty difficulty = Difficulty.NORMAL;
     private SimonSaysGUI gui;
-    private Set<GameEventListener> eventListeners;
+    private final Set<GameEventListener> eventListeners;
     private static Game game;
     
     
@@ -51,7 +48,10 @@ public class Game
      */ 
     private Game() 
     {
-        eventListeners = new HashSet<GameEventListener>();
+        this.highscore = new Highscore();
+        //eventListeners = new HashSet<GameEventListener>();
+        // Stores a list of game changes
+        eventListeners = new HashSet<>();
         state = GameState.STARTED;
         //output = new Output(difficulty);
     }   
@@ -99,6 +99,10 @@ public class Game
         
     }
     
+    
+    /**
+     * The rules of the game when playing.
+     */
     public void playGame()
     {
         //state = GameState.PLAYING;
@@ -138,7 +142,6 @@ public class Game
     /**
     * Compares the game's input with the game's output. If they don't
     * correlate, game ends.
-    * @return listsMatch True if the lists match, otherwise false.
     */
     public void compareInOutput()
     {
@@ -171,7 +174,7 @@ public class Game
     
      /**
      * Adds a listener for game change events.
-     * @param l the listener to add
+     * @param listener the listener to add
      */
     public void addGameEventListener(GameEventListener listener)
     {
@@ -180,7 +183,7 @@ public class Game
 
     /**
      * Removes a listener for game change events.
-     * @param l the listener to remove
+     * @param listener the listener to remove
      */
     public void removeGameEventListener(GameEventListener listener)
     {
@@ -207,6 +210,10 @@ public class Game
         return this.state;
     }
     
+    /**
+     * Sets the games state.
+     * @param state The state to change the game to.
+     */
     public void setState(GameState state)
     {
         this.state = state;
@@ -221,12 +228,19 @@ public class Game
         return this.input;
     }
     
-    
+    /**
+     * Gets the game's output object.
+     * @return This game's output object
+     */
     public Output getOutput()
     {
         return this.output;
     }
     
+    /**
+     * Compares the size of the input and output list.
+     * @return True if sizes are equal, false otherwise.
+     */
     public boolean compareListSize()
     {
         return output.getOutputList().size()==input.getInputList().size();
@@ -439,9 +453,5 @@ public class Game
         state=GameState.STARTED;
     }
     */
-    
-  
-
-    
-    
+   
 }

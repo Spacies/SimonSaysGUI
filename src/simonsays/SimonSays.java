@@ -12,10 +12,8 @@ import simonsays.gui.SimonSaysGUI;
  */
 public class SimonSays 
 {
-   
-    
     /**
-     * This is the main method of the SimonSays game
+     * This is the main method of the SimonSays game.
      * 
      * @param args the command line arguments
      */
@@ -37,6 +35,9 @@ public class SimonSays
                gui.setVisible(true);
             }
         });
+        
+        //display welcome splash
+        gui.displayInstructions();
     }
 }    
 
