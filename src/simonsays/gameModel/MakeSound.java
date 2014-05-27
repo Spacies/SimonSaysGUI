@@ -57,20 +57,34 @@ public class MakeSound // Holds one audio file
     * Plays the sound object once through and pauses for 1500ms
     * allowing a 1000ms sound to finish playing before the program
     * progresses.
+     * @param timeMultiplier
     */
-    public void playNPause()
+    public void playNPause(int timeMultiplier)
     {
+        int timeToSleep = 1200;
         audioClip.play(); // Play only once
         
+        if(timeMultiplier < 7)
+        {
+            timeMultiplier *= 100;
+            timeToSleep -= timeMultiplier;
+        }
+        else
+        {
+            timeToSleep = 600;      
+        }        
         //Pause so sounds can play consecutively
         try 
         {
-            Thread.sleep(1200);
+            Thread.sleep(timeToSleep);
+            audioClip.stop();
+            Thread.sleep(100);
         } 
         catch(InterruptedException ex) 
         {
             Thread.currentThread().interrupt();
         }
+      
     }
 
     /**

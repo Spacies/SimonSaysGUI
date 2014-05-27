@@ -88,9 +88,15 @@ public class Game
     
     public void startGame()
     {
+        if (!highscore.highscoreExists())
+        {
+            // Create highscore table if it doesn't exist
+            highscore.createHighscoreTable();
+        }
         if(state==GameState.STARTED)
-      {
+        {
            state = GameState.PLAYING;
+           output = null;
            firstRound = true;
             //gui = SimonSays.getGUIInstance();
         }    
@@ -122,21 +128,9 @@ public class Game
         }
         //Begins printing relevant output and playing corresponding tones
         output.produceOutput(gui);              
-        //gui.buttonOutput(output.getOutputList());
 
         //Creates an input option passing the current output as a parameter
         this.input = new Input(output, difficulty);
-        //Calculates whether the user has matched input or not
-        //if(output.getOutputList().size()==input.getInputList().size())
-        //{
-        //    boolean inputCorrect = compareInOutput();
-        //Conditional statement to be triggered once game is reported 
-        //as being lost
-        //    if(!inputCorrect)
-                //Changes game state to gameover when game lost
-        //        state=GameState.GAMEOVER;
-        //}
-        //notifyListenersOfGameChange();
     }
     
     /**
@@ -150,13 +144,7 @@ public class Game
         List<Integer> outputListCompare = output.getOutputList();
         // Get game's input list.
         List<Integer> inputListCompare = input.getInputList();
-        
-        //Temporary statements for printing input and output as sense check
-        //System.out.println("InputList = " + inputList);
-        //System.out.println("OutputList = " + outputList);
-        
-        //Creates an initialises a boolean variable to compare output
-        //boolean listsMatch = true;
+
         this.state = GameState.WON;
         // Compare input and output string
         for (int element = 0; element < outputListCompare.size(); element++)
@@ -168,8 +156,7 @@ public class Game
                 firstRound = true;
             }
         }      
-        notifyListenersOfGameChange();
-        
+        notifyListenersOfGameChange();       
     } 
     
      /**
@@ -218,7 +205,11 @@ public class Game
     {
         this.state = state;
     }
-
+    
+    public void setDifficulty(Difficulty difficulty)
+    {
+        this.difficulty = difficulty;
+    }
     /**
      * Gets this game's input object
      * @return input The game's input object
