@@ -45,67 +45,12 @@ public class Output
     
     public void produceOutput(SimonSaysGUI gui)
     {
-        //Calling the outputCountDown method to check how it prints
-        // if(firstRound)
-         //{
-             outputCountDown();
-             //firstRound = false;
-         //}
-
+        outputCountDown();
         // Generate a random int (to associate with a random tone)
         int randomInt = randomIntGenerator.generateRandomInt();
-
         // Add random int to outputList
         outputList.add(randomInt);
-
-         
-         // Play and print outputList
-         // 
-         //for (int element = 0; element < outputList.size(); element++)
-         //{
-            gui.buttonOutput(outputList);
-             /**
-             if (outputList.get(element).equals(1))
-            {
-               if(difficulty!=Difficulty.HARD)
-               {
-                  //System.out.println("1");
-               }
-               
-               //toneC.playNPause();
-
-            }
-            else if (outputList.get(element).equals(3))
-            {
-                if(difficulty!=Difficulty.HARD)
-                {                 
-                   //System.out.println("3");
-                }
-                //toneE.playNPause();
-            }
-            else if (outputList.get(element).equals(5))
-            {
-                if(difficulty!=Difficulty.HARD)
-                {                 
-                   //System.out.println("5");
-                }
-                //toneG.playNPause();
-            }
-            else if (outputList.get(element).equals(7))
-            {
-                if(difficulty!=Difficulty.HARD)
-                { 
-                   //System.out.println("7");
-               }
-                //toneB.playNPause();
-            }
-             if(difficulty!=Difficulty.EASY)
-             {
-                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); 
-             }
-             */
-         //}
-          
+        gui.buttonOutput(outputList);
     }
     
     /**
@@ -156,10 +101,10 @@ public class Output
     {
         
         // Play a welcome sound sequence
-        toneG.playNPause();
-        toneE.playNPause();
-        toneB.playNPause();
-        toneC.playNPause();
+        toneG.playNPause(getOutputList().size());
+        toneE.playNPause(getOutputList().size());
+        toneB.playNPause(getOutputList().size());
+        toneC.playNPause(getOutputList().size());
         
     }
     
