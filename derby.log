@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Tue May 27 22:55:32 NZST 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0146-3d52-26e9-00000eb88958 
+Thu May 29 16:53:54 NZST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0146-4653-c6b1-00000eb86490 
 on database directory C:\Users\Sam\Documents\GitHub\SimonSaysGUI\SimonSaysDB  with class loader sun.misc.Launcher$AppClassLoader@714a8f44 
 Loaded from file:/C:/Users/Sam/Documents/GitHub/SimonSaysGUI/javadb/lib/derby.jar
 java.vendor=Oracle Corporation
