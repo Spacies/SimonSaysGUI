@@ -71,6 +71,7 @@ public class MakeSound // Holds one audio file
         {
             Thread.currentThread().interrupt();
         }
+        audioClip.stop();
     }
 
     /**
