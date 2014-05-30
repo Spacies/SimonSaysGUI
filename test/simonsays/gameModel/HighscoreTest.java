@@ -79,7 +79,7 @@ public class HighscoreTest
     }
 
     /**
-     * Test of getHighscoreResultset method, of class Highscore.
+     * Test of getHighscoreResultSet method, of class Highscore.
      */
     @Test
     public void testGetHighscoreResultsetNotEmpty()
@@ -87,7 +87,7 @@ public class HighscoreTest
         System.out.println("getHighscoreResultset");
         
         ResultSet expResult = null;
-        ResultSet result = highscore.getHighscoreResultset();
+        ResultSet result = highscore.getHighscoreResultSet();
         
         assertNotNull(result);
     }

@@ -237,7 +237,14 @@ public class Game
         return output.getOutputList().size()==input.getInputList().size();
     }
     
-    
+    /**
+     * Gets the game's highscore object.
+     * @return The game's highscore object.
+     */
+    public Highscore getHighscore()
+    {
+        return highscore;
+    }
     
     
     /*
@@ -444,5 +451,7 @@ public class Game
         state=GameState.STARTED;
     }
     */
+
+    
    
 }

@@ -187,7 +187,7 @@ public class Highscore
      * and returns the object. 
      * @return rs The result statement of the query
      */
-    public ResultSet getHighscoreResultset()
+    public ResultSet getHighscoreResultSet()
     {
 
         ResultSet rs = null;
@@ -235,7 +235,7 @@ public class Highscore
         try 
         {
 
-            ResultSet highscoreResultSet = getHighscoreResultset();
+            ResultSet highscoreResultSet = getHighscoreResultSet();
             
             System.out.println("HIGHSCORES:");
             System.out.println("Rank    Name    Score");
@@ -263,6 +263,50 @@ public class Highscore
             Logger.getLogger(Highscore.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    /**
+     * Prints getHighscore() result set.
+     */
+    public String getHighscoreString()
+    {
+        
+        String highscoreString = "";
+   
+        try 
+        {
+
+            ResultSet highscoreResultSet = getHighscoreResultSet();
+            
+            highscoreString = "HIGHSCORES: \n";
+            highscoreString += "Rank    Name    Score \n";
+            highscoreString += "********************* \n";
+            
+            // While there are records in the result set of the table
+            while( highscoreResultSet.next() )
+            {
+                // Get the row values by specifying the columns
+                int rank = highscoreResultSet.getInt("Rank");
+                String name = highscoreResultSet.getString("Name");
+                int score = highscoreResultSet.getInt("Score");
+                
+                // Print out the highscores with tabs seperating values for 
+                // alignment
+                highscoreString += (rank + "\t" + name + "\t" + score + "\n");
+                
+            }            
+            
+            highscoreResultSet.close();
+            
+        } 
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Highscore.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return highscoreString;
+    }
+    
     
     /**
      * Checks whether the specified score is a highscore
@@ -338,7 +382,7 @@ public class Highscore
             /* Insert new highscore into the highscore table */
             
             // Get the highscore result set
-            ResultSet highscoreRS = getHighscoreResultset();
+            ResultSet highscoreRS = getHighscoreResultSet();
             
             // Move the cursor to the insert row.
             // The insert row is a special 

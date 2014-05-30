@@ -652,7 +652,8 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
     private void jMenuItemHighscoresActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemHighscoresActionPerformed
     {//GEN-HEADEREND:event_jMenuItemHighscoresActionPerformed
-        // TODO add your handling code here:
+        // Display message dialogue with highscores
+        displayHighscores();
     }//GEN-LAST:event_jMenuItemHighscoresActionPerformed
                                     
     
@@ -685,6 +686,24 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         JOptionPane.showMessageDialog(this,
             instructionText,
             "Instructions",
+            JOptionPane.INFORMATION_MESSAGE);
+
+    }
+    
+    /**
+     * Displays an instructional dialogue text.
+     */
+    public void displayHighscores()
+    {
+        
+        // Get a String represenation of the highscore table
+        String highscoreString = game.getHighscore().getHighscoreString();
+
+        
+        //custom title, no icon
+        JOptionPane.showMessageDialog(this,
+            highscoreString,
+            "Highscores",
             JOptionPane.INFORMATION_MESSAGE);
 
     }
