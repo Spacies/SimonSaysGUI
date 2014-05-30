@@ -36,6 +36,14 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     private static SimonSaysGUI gui; // static to enforce singleton
     Thread outputThread;
     String highscoreHandle = "";
+    
+    //java.awt.Color red = new java.awt.Color(190, 30, 30);
+    final Color green = new Color(80, 190, 100);
+    final Color red = new Color(190, 30, 30);
+    final Color blue = new Color(60, 180, 255);
+    final Color yellow = new Color(230, 240, 0);
+    
+    
     /**
      * Creates new SimonSaysGUINoImage GUI frame. Only one instance of this 
      * object can exist at one time (singleton).
@@ -50,6 +58,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         // Build the GUI components
         initComponents();   
         //update();
+
     }
     
     /**
@@ -82,10 +91,12 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
      */
     public void update()
     {
-        jBtnGreen.setBackground(Color.GREEN); 
-        jBtnRed.setBackground(Color.RED);
-        jBtnBlue.setBackground(Color.BLUE);
-        jBtnYellow.setBackground(Color.YELLOW);
+        //jBtnGreen.setBackground(Color.GREEN);
+        jBtnGreen.setBackground(green);
+        
+        jBtnRed.setBackground(red);
+        jBtnBlue.setBackground(blue);
+        jBtnYellow.setBackground(yellow);
         //Sets start button to enabled by default
         jBtnStart.setEnabled(true);
         //Sets start button to disabled if game is in any state except "Started"
@@ -116,7 +127,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
                 jBtnGreen.setBackground(Color.WHITE);
                 //update();
                 toneC.playNPause(outputList.size());
-                jBtnGreen.setBackground(Color.GREEN);         
+                jBtnGreen.setBackground(green);         
             }
             else if(outputList.get(element).equals(3))
             {
@@ -124,21 +135,21 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
                 jBtnRed.setBackground(Color.WHITE);  
                 //update();
                 toneE.playNPause(outputList.size());
-                jBtnRed.setBackground(Color.RED);
+                jBtnRed.setBackground(red);
             }
             else if(outputList.get(element).equals(5))
             {
                 jBtnBlue.setBackground(Color.WHITE);
                 //update();
                 toneG.playNPause(outputList.size());
-                jBtnBlue.setBackground(Color.BLUE);
+                jBtnBlue.setBackground(blue);
             }   
             else if(outputList.get(element).equals(7))
             {
                 jBtnYellow.setBackground(Color.WHITE);
                 //update();
                 toneB.playNPause(outputList.size());
-                jBtnYellow.setBackground(Color.YELLOW);
+                jBtnYellow.setBackground(yellow);
             }  
             update();
             
@@ -178,7 +189,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jPnlCentre = new javax.swing.JPanel();
         jBtnStart = new javax.swing.JButton();
         jlblDisplay = new javax.swing.JLabel();
-        jLblCountdown = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemStart = new javax.swing.JMenuItem();
@@ -408,20 +418,13 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jPnlCentre.add(jBtnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
 
         jlblDisplay.setBackground(new java.awt.Color(153, 0, 0));
-        jlblDisplay.setFont(jlblDisplay.getFont());
+        jlblDisplay.setFont(jlblDisplay.getFont().deriveFont(jlblDisplay.getFont().getSize()+17f));
         jlblDisplay.setForeground(java.awt.Color.red);
         jlblDisplay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlblDisplay.setText("Current Score: 0");
+        jlblDisplay.setText("0");
         jlblDisplay.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jlblDisplay.setOpaque(true);
-        jPnlCentre.add(jlblDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 9, 184, 30));
-
-        jLblCountdown.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLblCountdown.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLblCountdown.setText("X");
-        jLblCountdown.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLblCountdown.setOpaque(true);
-        jPnlCentre.add(jLblCountdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 75, 57));
+        jPnlCentre.add(jlblDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 9, 184, 100));
 
         javax.swing.GroupLayout jPnlButtonsLayout = new javax.swing.GroupLayout(jPnlButtons);
         jPnlButtons.setLayout(jPnlButtonsLayout);
@@ -703,7 +706,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     private javax.swing.JDialog jDialogSettings;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelHighscoreQuery;
-    private javax.swing.JLabel jLblCountdown;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
