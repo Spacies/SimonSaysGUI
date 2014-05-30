@@ -153,7 +153,8 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jDialogSettings = new javax.swing.JDialog();
         jPanelSettings = new javax.swing.JPanel();
@@ -177,12 +178,14 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jPnlCentre = new javax.swing.JPanel();
         jBtnStart = new javax.swing.JButton();
         jlblDisplay = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLblCountdown = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemStart = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItemSettings = new javax.swing.JMenuItem();
+        jMenuItemHighscores = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItemExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMnuInstructions = new javax.swing.JMenuItem();
@@ -202,23 +205,29 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jLabel1.setText("Difficulty:");
 
         jRadioButtonEasy.setText("Easy");
-        jRadioButtonEasy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jRadioButtonEasy.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jRadioButtonEasyActionPerformed(evt);
             }
         });
 
         jRadioButtonNormal.setSelected(true);
         jRadioButtonNormal.setText("Normal");
-        jRadioButtonNormal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jRadioButtonNormal.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jRadioButtonNormalActionPerformed(evt);
             }
         });
 
         jRadioButtonHard.setText("Hard");
-        jRadioButtonHard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jRadioButtonHard.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jRadioButtonHardActionPerformed(evt);
             }
         });
@@ -259,10 +268,8 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         buttonGroupDifficulty.add(jRadioButtonNormal);
         buttonGroupDifficulty.add(jRadioButtonHard);
 
-        jDialogHighScoreEntry.setMaximumSize(new java.awt.Dimension(285, 170));
         jDialogHighScoreEntry.setMinimumSize(new java.awt.Dimension(200, 160));
         jDialogHighScoreEntry.setModal(true);
-        jDialogHighScoreEntry.setPreferredSize(new java.awt.Dimension(285, 150));
         jDialogHighScoreEntry.setResizable(false);
         jDialogHighScoreEntry.pack();
 
@@ -277,8 +284,10 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
         jTextHighscoreHandle.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextHighscoreHandle.setMinimumSize(new java.awt.Dimension(45, 20));
-        jTextHighscoreHandle.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        jTextHighscoreHandle.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
                 jTextHighscoreHandleKeyPressed(evt);
             }
         });
@@ -286,8 +295,10 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
         jButtonHighscoreSubmit.setText("OK");
         jButtonHighscoreSubmit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonHighscoreSubmit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonHighscoreSubmit.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonHighscoreSubmitActionPerformed(evt);
             }
         });
@@ -319,141 +330,142 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Simon Says");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpnlWindow.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPnlButtons.setBackground(new java.awt.Color(153, 204, 255));
+        jPnlButtons.setBackground(new java.awt.Color(36, 36, 36));
         jPnlButtons.setToolTipText("");
         jPnlButtons.setPreferredSize(new java.awt.Dimension(650, 650));
 
-        jBtnGreen.setBackground(java.awt.Color.green);
+        jBtnGreen.setBackground(new java.awt.Color(80, 190, 100));
+        jBtnGreen.setActionCommand("green");
         jBtnGreen.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnGreen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBtnGreen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jBtnGreen.setOpaque(true);
+        jBtnGreen.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jBtnGreenActionPerformed(evt);
             }
         });
 
-        jBtnRed.setBackground(java.awt.Color.red);
+        jBtnRed.setBackground(new java.awt.Color(190, 30, 30));
+        jBtnRed.setActionCommand("red");
         jBtnRed.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnRed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBtnRed.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jBtnRed.setOpaque(true);
+        jBtnRed.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jBtnRedActionPerformed(evt);
             }
         });
 
-        jBtnBlue.setBackground(java.awt.Color.blue);
+        jBtnBlue.setBackground(new java.awt.Color(60, 180, 255));
+        jBtnBlue.setActionCommand("blue");
         jBtnBlue.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnBlue.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBtnBlue.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jBtnBlue.setOpaque(true);
+        jBtnBlue.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jBtnBlueActionPerformed(evt);
             }
         });
 
-        jBtnYellow.setBackground(java.awt.Color.yellow);
+        jBtnYellow.setBackground(new java.awt.Color(230, 240, 0));
+        jBtnYellow.setActionCommand("yellow");
         jBtnYellow.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnYellow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBtnYellow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jBtnYellow.setOpaque(true);
+        jBtnYellow.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jBtnYellowActionPerformed(evt);
             }
         });
 
-        jPnlCentre.setBackground(new java.awt.Color(102, 204, 255));
+        jPnlCentre.setBackground(new java.awt.Color(190, 190, 190));
         jPnlCentre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPnlCentre.setPreferredSize(new java.awt.Dimension(200, 200));
+        jPnlCentre.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jBtnStart.setText("Start");
         jBtnStart.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBtnStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jBtnStart.setOpaque(true);
+        jBtnStart.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jBtnStartActionPerformed(evt);
             }
         });
+        jPnlCentre.add(jBtnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
 
+        jlblDisplay.setBackground(new java.awt.Color(153, 0, 0));
         jlblDisplay.setFont(jlblDisplay.getFont());
+        jlblDisplay.setForeground(java.awt.Color.red);
         jlblDisplay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblDisplay.setText("Current Score: 0");
         jlblDisplay.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jlblDisplay.setOpaque(true);
+        jPnlCentre.add(jlblDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 9, 184, 30));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("X");
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel2.setOpaque(true);
-
-        javax.swing.GroupLayout jPnlCentreLayout = new javax.swing.GroupLayout(jPnlCentre);
-        jPnlCentre.setLayout(jPnlCentreLayout);
-        jPnlCentreLayout.setHorizontalGroup(
-            jPnlCentreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPnlCentreLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jlblDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlCentreLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPnlCentreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBtnStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(68, 68, 68))
-        );
-        jPnlCentreLayout.setVerticalGroup(
-            jPnlCentreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlCentreLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jlblDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnStart)
-                .addContainerGap())
-        );
+        jLblCountdown.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLblCountdown.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLblCountdown.setText("X");
+        jLblCountdown.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLblCountdown.setOpaque(true);
+        jPnlCentre.add(jLblCountdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 75, 57));
 
         javax.swing.GroupLayout jPnlButtonsLayout = new javax.swing.GroupLayout(jPnlButtons);
         jPnlButtons.setLayout(jPnlButtonsLayout);
         jPnlButtonsLayout.setHorizontalGroup(
             jPnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlButtonsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBtnBlue, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPnlButtonsLayout.createSequentialGroup()
-                        .addComponent(jBtnYellow, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPnlCentre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBtnGreen, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))))
+                .addGap(224, 224, 224)
+                .addComponent(jBtnGreen, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPnlButtonsLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jBtnYellow, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jBtnRed, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(jPnlCentre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jBtnRed, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPnlButtonsLayout.createSequentialGroup()
+                .addGap(226, 226, 226)
+                .addComponent(jBtnBlue, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPnlButtonsLayout.setVerticalGroup(
             jPnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlButtonsLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(jBtnGreen, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPnlButtonsLayout.createSequentialGroup()
-                        .addGroup(jPnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jBtnYellow, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(jPnlCentre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jBtnBlue, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBtnYellow, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPnlCentre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnRed, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jBtnBlue, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jpnlWindow.add(jPnlButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 660));
+        jpnlWindow.add(jPnlButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 660));
+
+        getContentPane().add(jpnlWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 666));
 
         jMenu1.setText("File");
 
         jMenuItemStart.setText("Start");
-        jMenuItemStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemStart.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jMenuItemStartActionPerformed(evt);
             }
         });
@@ -461,16 +473,31 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jMenu1.add(jSeparator1);
 
         jMenuItemSettings.setText("Settings");
-        jMenuItemSettings.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemSettings.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jMenuItemSettingsActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItemSettings);
 
+        jMenuItemHighscores.setText("Highscores");
+        jMenuItemHighscores.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItemHighscoresActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemHighscores);
+        jMenu1.add(jSeparator2);
+
         jMenuItemExit.setText("Exit");
-        jMenuItemExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemExit.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jMenuItemExitActionPerformed(evt);
             }
         });
@@ -481,8 +508,10 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jMenu2.setText("Help");
 
         jMnuInstructions.setText("Instructions");
-        jMnuInstructions.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMnuInstructions.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jMnuInstructionsSelected(evt);
             }
         });
@@ -491,22 +520,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jpnlWindow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jpnlWindow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         getAccessibleContext().setAccessibleDescription("");
 
@@ -537,8 +550,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     private void jBtnGreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGreenActionPerformed
         // When green button clicked, play the related sound
         
-        jBtnGreen.setBackground(Color.WHITE);
-        
         toneC.playSound();
         
         // If the game is PLAYING register it as input
@@ -551,7 +562,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
                 game.compareInOutput();
             }
         }        
-        jBtnGreen.setBackground(Color.GREEN);
     }//GEN-LAST:event_jBtnGreenActionPerformed
 
     private void jBtnYellowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnYellowActionPerformed
@@ -633,9 +643,14 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         if(jTextHighscoreHandle.getText().length()>=3)
         {
             jTextHighscoreHandle.setText(jTextHighscoreHandle.getText().substring(0, 2));
-            update();
+            //update();
         }             
     }//GEN-LAST:event_jTextHighscoreHandleKeyPressed
+
+    private void jMenuItemHighscoresActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemHighscoresActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemHighscoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemHighscoresActionPerformed
                                     
     
     /**
@@ -675,49 +690,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     {
             jDialogSettings.setVisible(rootPaneCheckingEnabled);  
     }
-    
-    
-    
-    
-    
-    // Handled in SimonSays Main()
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[])
-//    {
-//        /* Set the Nimbus look and feel */
-//        <editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(SimonSaysGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(SimonSaysGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(SimonSaysGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(SimonSaysGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        </editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable()
-//        {
-//            public void run()
-//            {
-//                new SimonSaysGUI().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupDifficulty;
@@ -730,12 +702,13 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     private javax.swing.JDialog jDialogHighScoreEntry;
     private javax.swing.JDialog jDialogSettings;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelHighscoreQuery;
+    private javax.swing.JLabel jLblCountdown;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemExit;
+    private javax.swing.JMenuItem jMenuItemHighscores;
     private javax.swing.JMenuItem jMenuItemSettings;
     private javax.swing.JMenuItem jMenuItemStart;
     private javax.swing.JMenuItem jMnuInstructions;
@@ -748,6 +721,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     private javax.swing.JRadioButton jRadioButtonHard;
     private javax.swing.JRadioButton jRadioButtonNormal;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JTextField jTextHighscoreHandle;
     private javax.swing.JLabel jlblDisplay;
     private javax.swing.JPanel jpnlWindow;
@@ -785,7 +759,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         {
             jlblDisplay.setText("CurrentScore: 0");
             //Shows a temporary dialog box stating loss
-            JOptionPane.showMessageDialog(null, "You have lost!", "Game Over!",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "You have lost!", "Game Over!",JOptionPane.ERROR_MESSAGE);
             //Puts the game back into the started state.
             game.setState(GameState.STARTED);
         }

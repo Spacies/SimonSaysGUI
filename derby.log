@@ -1,10 +1,10 @@
 ----------------------------------------------------------------
-Tue May 27 11:19:38 NZST 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0146-3ad5-06b6-000000c18678 
-on database directory /Users/jaimesbooth/NetBeansProjects/SimonSaysGUI/SimonSaysDB  with class loader sun.misc.Launcher$AppClassLoader@39c26db4 
+Fri May 30 11:30:41 NZST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0146-4a52-3a07-000003f0f540 
+on database directory /Users/jaimesbooth/NetBeansProjects/SimonSaysGUI/SimonSaysDB  with class loader sun.misc.Launcher$AppClassLoader@2ed4a1d3 
 Loaded from file:/Users/jaimesbooth/NetBeansProjects/SimonSays/javadb/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_51-b13
-user.dir=C:\Users\Sam\Documents\GitHub\SimonSaysGUI
+java.runtime.version=1.7.0_25-b15
+user.dir=/Users/jaimesbooth/NetBeansProjects/SimonSaysGUI
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
