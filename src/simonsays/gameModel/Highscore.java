@@ -1,9 +1,11 @@
 
 package simonsays.gameModel;
 
+import java.awt.Font;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 
 /**
  * Generates and manipulates a database of highscores for SimonSays
@@ -41,6 +43,11 @@ public class Highscore
             
             // Notify of DB connection
             //System.out.println(url + " connected...");
+            
+            // Check highscore table exists
+            if (!highscoreExists())
+                // Create highscore table if it doesn't exist
+                createHighscoreTable();
 
         }
         catch(SQLException ex) 
@@ -266,7 +273,7 @@ public class Highscore
     
     
     /**
-     * Prints getHighscore() result set.
+     * Prints getHighscore() result set string.
      */
     public String getHighscoreString()
     {
@@ -278,9 +285,9 @@ public class Highscore
 
             ResultSet highscoreResultSet = getHighscoreResultSet();
             
-            highscoreString = "HIGHSCORES: \n";
-            highscoreString += "Rank    Name    Score \n";
-            highscoreString += "********************* \n";
+            //highscoreString = "HIGHSCORES: \n";
+            highscoreString = "Rank\tName\tScore\n";
+            highscoreString += "***********************************\n";
             
             // While there are records in the result set of the table
             while( highscoreResultSet.next() )
@@ -296,7 +303,7 @@ public class Highscore
                 
             }            
             
-            highscoreResultSet.close();
+            highscoreResultSet.close(); 
             
         } 
         catch (SQLException ex) 
@@ -305,6 +312,61 @@ public class Highscore
         }
         
         return highscoreString;
+    }
+    
+    
+    /**
+     * Creates a JLabel array of highscores.
+     */
+    public JLabel[] getHighscoreJLabelArray()
+    {
+        
+        JLabel[] highscoreJLabelArray = new JLabel[12];
+        int numRows = 1;
+   
+        try 
+        {
+
+            ResultSet highscoreResultSet = getHighscoreResultSet();
+            
+            highscoreJLabelArray[0] = new JLabel("Rank    Name    Score \n");
+            highscoreJLabelArray[1] = new JLabel("********************* \n");
+            
+            // While there are records in the result set of the table
+            while( highscoreResultSet.next() && numRows < 12)
+            {
+                // Get the row values by specifying the columns
+                int rank = highscoreResultSet.getInt("Rank");
+                String name = highscoreResultSet.getString("Name");
+                int score = highscoreResultSet.getInt("Score");
+                
+                // Print out the highscores with tabs seperating values for 
+                // alignment
+                //highscoreString += (rank + "\t" + name + "\t" + score + "\n");
+                System.out.println(rank);
+                highscoreJLabelArray[rank +1] = new JLabel(rank + "\t" + name + "\t" + score + "\n");
+                System.out.println(highscoreJLabelArray[rank +1].getText());
+                
+                numRows++;
+                
+            }            
+            
+            highscoreResultSet.close(); 
+            
+        } 
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Highscore.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // Set a monospaced font for alignments
+        for (JLabel label : highscoreJLabelArray)
+        {
+           
+            label.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        }
+        
+        return highscoreJLabelArray;
     }
     
     

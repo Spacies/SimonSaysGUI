@@ -2,10 +2,14 @@
 package simonsays.gui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import simonsays.gameModel.Difficulty;
 import simonsays.gameModel.Game;
 import simonsays.gameModel.GameEventListener;
@@ -682,29 +686,95 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
                 "Additional output is added until you make an error."
                 );
         
+        // Create instruction icon
+        ImageIcon icon = createImageIcon("/simonsays/images/simon.jpg",
+                "a vintage electronic game");
+        
         //custom title, no icon
         JOptionPane.showMessageDialog(this,
             instructionText,
             "Instructions",
-            JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.INFORMATION_MESSAGE,
+            icon);
 
     }
     
+    
+    /** 
+     * Returns an ImageIcon, or null if the path was invalid. 
+     * @param path The path that contains the image.
+     * @param description The description for visually impaired purposes.
+     * http://docs.oracle.com/javase/tutorial/uiswing/components/icon.html
+     * @return The created image icon
+     */
+    protected ImageIcon createImageIcon(String path, String description) 
+    {
+        ImageIcon icon = null;
+        
+        java.net.URL imgURL = getClass().getResource(path);
+        
+        if (imgURL != null) 
+        {
+            icon =  new ImageIcon(imgURL, description);
+        } 
+        else 
+        {
+            System.err.println("Couldn't find file: " + path);
+        }
+        
+        return icon;
+    }
+    
+    
     /**
-     * Displays an instructional dialogue text.
+     * Displays a highscore dialogue text.
      */
     public void displayHighscores()
     {
         
         // Get a String represenation of the highscore table
         String highscoreString = game.getHighscore().getHighscoreString();
-
         
-        //custom title, no icon
+        // Get JLabel array representing highscores
+        //JLabel[] highscoreArray = game.getHighscore().getHighscoreJLabelArray();
+        //highscoreLabel.setFont(new Font("Monospaced", Font.PLAIN, 14));
+
+        //http://www.tek-tips.com/viewthread.cfm?qid=647993
+//        JOptionPane jopt = new JOptionPane();
+//        String result;
+//        result = "Print this string.";
+//        JLabel resLabel = new JLabel(result);
+//        resLabel.setFont(new Font("Monospaced", Font.BOLD, 50));
+//        //jopt.setFont(new Font("Monospaced", Font.BOLD, 50));
+//        jopt.showMessageDialog( null, resLabel, "Results", JOptionPane.PLAIN_MESSAGE );
+        
+        //JLabel highscoreLabel = new JLabel(highscoreString);
+        //highscoreLabel.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        //jopt.setFont(new Font("Monospaced", Font.BOLD, 50));
+        //jopt.showMessageDialog( null, highscoreLabel, "Results", JOptionPane.PLAIN_MESSAGE );
+        
+        //JOptionPane.showMessageDialog(null, new JTextArea(highscoreString));
+        
+        // Create highscore icon
+        ImageIcon icon = createImageIcon("/simonsays/images/musicTrophy.jpg",
+                "a highscore trophy");
+        
+        // Display highscore dialogue box
+        // custom title, custom icon
         JOptionPane.showMessageDialog(this,
-            highscoreString,
+            new JTextArea(highscoreString),
             "Highscores",
-            JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.INFORMATION_MESSAGE,
+            icon);
+        
+        
+//        //custom title, no icon
+//        JOptionPane.showMessageDialog(this,
+//            highscoreString,
+//            "Highscores",
+//            JOptionPane.INFORMATION_MESSAGE);
+        
+
 
     }
     
