@@ -27,8 +27,11 @@ import simonsays.gameModel.Output;
  *  list.
  * @modified 18/05/14 Jaimes
  *  Added start and exit to menu bar, title to window frame.
- * @modified 22/05/14
+ * @modified 22/05/14 Jaimes
  *  Added instruction dialogue
+ * @modified 30/05/14
+ *  Added highscore dialogue
+ *  
  */
 public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListener
 {
@@ -702,8 +705,8 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     
     /** 
      * Returns an ImageIcon, or null if the path was invalid. 
-     * @param path The path that contains the image.
-     * @param description The description for visually impaired purposes.
+     * @param path The path that contains the image file.
+     * @param description The description of the image for the visually impaired.
      * http://docs.oracle.com/javase/tutorial/uiswing/components/icon.html
      * @return The created image icon
      */
@@ -712,7 +715,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         ImageIcon icon = null;
         
         java.net.URL imgURL = getClass().getResource(path);
-        
+
         if (imgURL != null) 
         {
             icon =  new ImageIcon(imgURL, description);

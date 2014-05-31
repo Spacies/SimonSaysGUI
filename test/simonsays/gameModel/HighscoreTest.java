@@ -13,6 +13,8 @@ import static org.junit.Assert.*;
  * Tests the Simon Says highscore database.
  * @author Jaimes Booth 1305390
  * @version 20/05/14
+ * @modified 01/06/14 Jaimes
+ *  Changed access to highscore now that it is singleton.
  */
 public class HighscoreTest
 {
@@ -36,7 +38,7 @@ public class HighscoreTest
     @Before
     public void setUp()
     {
-        highscore = new Highscore();
+        highscore = Highscore.getHighscoreObject();
         
     }
     

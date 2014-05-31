@@ -48,7 +48,9 @@ public class Game
      */ 
     private Game() 
     {
-        this.highscore = new Highscore();
+        //this.highscore = new Highscore();
+        highscore = Highscore.getHighscoreObject();
+
         //eventListeners = new HashSet<GameEventListener>();
         // Stores a list of game changes
         eventListeners = new HashSet<>();

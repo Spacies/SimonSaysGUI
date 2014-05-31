@@ -16,16 +16,25 @@ import javax.swing.JLabel;
  * @modified 07/06/14 Jaimes
  *  New score now inserts correctly into Highscore
  *  Prettied up the highscore print out
- * @modified 20/05/14
+ * @modified 20/05/14 Jaimes
  *  Changed database connection to use embedded driver.
+ * @modified 30/05/14 Jaimes
+ *  Added getHighscoreString() and getHighscoreJLabelArray() to return
+ *  representations of the highscore for displaying in the highscore dialogue.
+ * @modified 01/06/14 Jaimes
+ *  Refactored to singleton pattern.
  */
 public class Highscore
 {
     
+    private static Highscore highscore;
+    
     Connection conn = null;
+    
     // Network driver connection
     //String url = "jdbc:derby://localhost:1527/SimonSaysDB";  //url of the DB host
-    // Embedded driver connection
+    
+    // Embedded driver connection. Creates database if it doesn't exist.
     String url = "jdbc:derby:SimonSaysDB;create=true";  //url of the DB host
     String username = "simonsays";  //your DB username
     String password = "simonsays";   //your DB password
@@ -34,11 +43,11 @@ public class Highscore
     /**
      * Constructor of the Highscore class. Connects to the SimonSays database.
      */
-    public Highscore()
+    private Highscore()
     {
         try
         {
-            // Creates instance of a Connection object
+            // Creates instance of a Connection object, creates DB if it doesn't exist.
             conn = DriverManager.getConnection(url, username, password);
             
             // Notify of DB connection
@@ -50,6 +59,7 @@ public class Highscore
                 createHighscoreTable();
 
         }
+        // If DB connection can not be made, inform user and close application.
         catch(SQLException ex) 
         {
             System.out.println("Please manually connect to the SimonSaysDB via the NetBeans Services pane");
@@ -58,6 +68,37 @@ public class Highscore
             //System.err.println("SQLException: " + ex.getMessage());
         }
     }
+    
+    /**
+     * Gets this singleton highscore object.
+     * @return highscoreObject This highscore object
+     */
+    public static synchronized Highscore getHighscoreObject()
+    {
+        if (highscore == null) 
+        { 
+            highscore = new Highscore(); 
+        } 
+        
+        return highscore;
+
+    }
+    
+    
+    /**
+     * Overrides the Object clone method to prevent cloning of this singleton
+     * highscore object.
+     * @return n/a
+     * @throws CloneNotSupportedException 
+     */
+    @Override
+    public Object clone() throws CloneNotSupportedException 
+    {
+        
+       throw new CloneNotSupportedException();
+       
+    }
+
     
 
     /**
@@ -234,7 +275,7 @@ public class Highscore
 
     
     /**
-     * Prints getHighscore() result set.
+     * Prints getHighscore() result set to the console.
      */
     public void printHighscore()
     {
@@ -273,7 +314,7 @@ public class Highscore
     
     
     /**
-     * Prints getHighscore() result set string.
+     * Gets a string representing the highscores.
      */
     public String getHighscoreString()
     {
@@ -316,7 +357,8 @@ public class Highscore
     
     
     /**
-     * Creates a JLabel array of highscores.
+     * Gets a JLabel array containing rows of highscores.
+     * @return highscoreJLabelArray[] The array of highscore rows
      */
     public JLabel[] getHighscoreJLabelArray()
     {
@@ -329,8 +371,8 @@ public class Highscore
 
             ResultSet highscoreResultSet = getHighscoreResultSet();
             
-            highscoreJLabelArray[0] = new JLabel("Rank    Name    Score \n");
-            highscoreJLabelArray[1] = new JLabel("********************* \n");
+            highscoreJLabelArray[0] = new JLabel("Rank    Name    Score");
+            highscoreJLabelArray[1] = new JLabel("*********************");
             
             // While there are records in the result set of the table
             while( highscoreResultSet.next() && numRows < 12)
@@ -359,11 +401,12 @@ public class Highscore
             Logger.getLogger(Highscore.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        // Set a monospaced font for alignments
+        // Set a monospaced font for alignment
         for (JLabel label : highscoreJLabelArray)
         {
            
             label.setFont(new Font("Monospaced", Font.PLAIN, 14));
+            
         }
         
         return highscoreJLabelArray;
