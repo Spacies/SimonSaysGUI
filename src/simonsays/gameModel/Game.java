@@ -179,7 +179,7 @@ public class Game
         if (score < 0)
             score = 0;   
         
-        notifyListenersOfGameChange(); 
+        //notifyListenersOfGameChange(); 
         
         return score;
            

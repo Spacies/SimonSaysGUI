@@ -651,7 +651,8 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
     private void jButtonHighscoreSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHighscoreSubmitActionPerformed
         highscoreHandle = jTextHighscoreHandle.getText();
-        jDialogHighScoreEntry.setVisible(true);
+        game.getHighscore().insertHighscore(highscoreHandle, game.getScore());
+        jDialogHighScoreEntry.setVisible(false);
     }//GEN-LAST:event_jButtonHighscoreSubmitActionPerformed
 
     private void jTextHighscoreHandleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextHighscoreHandleKeyPressed
@@ -842,7 +843,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             //If the game is started, then begin the game
             //jlblDisplay.setText("Current Score: 0");
             jlblDisplay.setText("0");
-            game.startGame();       
+            //game.startGame();       
         }
         //Checks if game is in playing state
         if(game.getState()==GameState.PLAYING)
@@ -868,12 +869,19 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             jlblDisplay.setText("0");
 
             //Shows a temporary dialog box stating loss
-            JOptionPane.showMessageDialog(this,
-                    "You have lost!",
-                    "Game Over!",
-                    JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(this,
+            //        "You have lost!",
+            //        "Game Over!",
+            //        JOptionPane.ERROR_MESSAGE);
             //Puts the game back into the started state.
+            int score = game.getScore();
+            if(game.getHighscore().checkIfHighscore(score))
+            {
+                jDialogHighScoreEntry.setVisible(rootPaneCheckingEnabled);
+                
+            }
             game.setState(GameState.STARTED);
+            //gameHasChanged();
         }
         //Checks to see if the game is in won state
         if(game.getState()==GameState.WON)
