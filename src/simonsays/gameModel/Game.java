@@ -161,6 +161,30 @@ public class Game
         notifyListenersOfGameChange();       
     } 
     
+    
+    /**
+    * Calculates the game's score based on game's current output length. 
+    */
+    public int getScore()
+    {
+        
+        int score;
+        
+        // Score = The final output list length - 1; 0 as a minimum.
+        List<Integer> outputList = output.getOutputList();
+        
+        score = outputList.size() - 1;
+        
+        // Can not have score less than 0
+        if (score < 0)
+            score = 0;   
+        
+        notifyListenersOfGameChange(); 
+        
+        return score;
+           
+    } 
+    
      /**
      * Adds a listener for game change events.
      * @param listener the listener to add
@@ -208,10 +232,15 @@ public class Game
         this.state = state;
     }
     
+    /**
+     * Sets the game state to the specified difficulty
+     * @param difficulty The state to set the game's difficulty to.
+     */
     public void setDifficulty(Difficulty difficulty)
     {
         this.difficulty = difficulty;
     }
+    
     /**
      * Gets this game's input object
      * @return input The game's input object
