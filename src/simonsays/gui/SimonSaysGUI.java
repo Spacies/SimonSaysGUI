@@ -113,7 +113,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         }
         if((game.getState()==GameState.PLAYING)&&(game.getOutput()!=null))
         {
-            jlblDisplay.setText("Current Score: "+game.getOutput().getOutputList().size());
+            jlblDisplay.setText(""+game.getOutput().getOutputList().size());
         }   
     }
     
@@ -771,6 +771,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             icon);
         
         
+        
 //        //custom title, no icon
 //        JOptionPane.showMessageDialog(this,
 //            highscoreString,
@@ -828,7 +829,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         if(game.getState()==GameState.STARTED)
         {
             //If the game is started, then begin the game
-            jlblDisplay.setText("Current Score: 0");
+            jlblDisplay.setText("0");
             game.startGame();       
         }
         //Checks if game is in playing state
@@ -851,7 +852,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         //Checks if the game is in game over state
         if (game.getState()==GameState.GAMEOVER)
         {
-            jlblDisplay.setText("CurrentScore: 0");
+            jlblDisplay.setText("0");
             //Shows a temporary dialog box stating loss
             JOptionPane.showMessageDialog(this, "You have lost!", "Game Over!",JOptionPane.ERROR_MESSAGE);
             //Puts the game back into the started state.
