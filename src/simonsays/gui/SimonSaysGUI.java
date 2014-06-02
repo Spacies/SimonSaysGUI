@@ -32,8 +32,7 @@ import simonsays.gameModel.Output;
  * @modified 30/05/14 Jaimes
  *  Added highscore dialogue
  * @modified 02/05/14 Jaimes
- *  Set highscore dialogue text area read only. Removed "current score" string
- *  from display label.
+ *  Set highscore dialogue text area read only
  *  
  */
 public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListener
@@ -652,7 +651,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
     private void jButtonHighscoreSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHighscoreSubmitActionPerformed
         highscoreHandle = jTextHighscoreHandle.getText();
-        //jDialogHighScoreEntry.setVisible(true);
+        jDialogHighScoreEntry.setVisible(true);
     }//GEN-LAST:event_jButtonHighscoreSubmitActionPerformed
 
     private void jTextHighscoreHandleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextHighscoreHandleKeyPressed
@@ -683,8 +682,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
     
     /**
-     * Displays an instructional dialogue text. This is "splashed" when
-     * starting the game.
+     * Displays an instructional dialogue text.
      */
     public void displayInstructions()
     {
@@ -692,7 +690,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         String instructionText = ("Welcome to Simon Says! \n" +
                 "A musical game of memory. \n" +
                 "\n" +
-                "Correctly reproduce the tone sequence. \n" +
+                "Correctly reproduce the tone sequence. " +
                 "Additional output is added until you make an error."
                 );
         
@@ -784,6 +782,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             icon);
         
         
+        
 //        //custom title, no icon
 //        JOptionPane.showMessageDialog(this,
 //            highscoreString,
@@ -865,46 +864,16 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         //Checks if the game is in game over state
         if (game.getState()==GameState.GAMEOVER)
         {
-            System.out.println("Game over clause");
-            
-            //Puts the game back into the started state.
-            game.setState(GameState.STARTED);
-            System.out.println("Game state to STARTED");
-            
             //jlblDisplay.setText("CurrentScore: 0");
             jlblDisplay.setText("0");
-            System.out.println("Set label display text");
 
             //Shows a temporary dialog box stating loss
             JOptionPane.showMessageDialog(this,
                     "You have lost!",
                     "Game Over!",
                     JOptionPane.ERROR_MESSAGE);
-            
-            // Check if the finalScore is a highscore
-
-            int finalScore = game.getScore();
-            
-            System.out.println("Final score = " + finalScore);
-            
-            System.out.println("checking for highscore");
-
-            System.out.println(game.getHighscore().checkIfHighscore(finalScore));
-
-            // Check if finalScore is a highscore
-            if (game.getHighscore().checkIfHighscore(finalScore))
-            {
-                System.out.println("Highscore is true");
-
-                //boolean entryCancelled = false;
-
-                // Get input
-                jDialogHighScoreEntry.setVisible(true);
-            }
-            
             //Puts the game back into the started state.
             game.setState(GameState.STARTED);
-            System.out.println("Game state to STARTED");
         }
         //Checks to see if the game is in won state
         if(game.getState()==GameState.WON)
