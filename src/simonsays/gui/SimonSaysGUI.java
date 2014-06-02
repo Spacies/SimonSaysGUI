@@ -762,10 +762,14 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         ImageIcon icon = createImageIcon("/simonsays/images/musicTrophy.jpg",
                 "a highscore trophy");
         
+        JTextArea highscoreTextArea = new JTextArea(highscoreString);
+        
+        highscoreTextArea.setEditable(false);
+        
         // Display highscore dialogue box
         // custom title, custom icon
         JOptionPane.showMessageDialog(this,
-            new JTextArea(highscoreString),
+            highscoreTextArea,
             "Highscores",
             JOptionPane.INFORMATION_MESSAGE,
             icon);
