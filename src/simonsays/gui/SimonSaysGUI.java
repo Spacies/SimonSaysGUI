@@ -292,7 +292,9 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
         jDialogHighScoreEntry.setMinimumSize(new java.awt.Dimension(200, 160));
         jDialogHighScoreEntry.setModal(true);
+        jDialogHighScoreEntry.setPreferredSize(new java.awt.Dimension(300, 200));
         jDialogHighScoreEntry.setResizable(false);
+        jDialogHighScoreEntry.setSize(new java.awt.Dimension(300, 200));
         jDialogHighScoreEntry.pack();
 
         jPanelHighScore.setBorder(javax.swing.BorderFactory.createTitledBorder("Highscore"));
@@ -332,7 +334,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             jPanelHighScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHighScoreLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelHighscoreQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                .addComponent(jLabelHighscoreQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanelHighScoreLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
@@ -345,10 +347,12 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
                 .addComponent(jLabelHighscoreQuery, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelHighscoreContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         jDialogHighScoreEntry.getContentPane().add(jPanelHighScore, java.awt.BorderLayout.CENTER);
+
+        jDialogHighScoreEntry.setLocationRelativeTo(this);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Simon Says");
@@ -686,7 +690,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         String instructionText = ("Welcome to Simon Says! \n" +
                 "A musical game of memory. \n" +
                 "\n" +
-                "Correctly reproduce the tone sequence. " +
+                "Correctly reproduce the tone sequence. \n" +
                 "Additional output is added until you make an error."
                 );
         
@@ -872,6 +876,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             int score = game.getScore();
             if(game.getHighscore().checkIfHighscore(score))
             {
+
                 jDialogHighScoreEntry.setVisible(rootPaneCheckingEnabled);
                 
                 //display highscore dialogue
