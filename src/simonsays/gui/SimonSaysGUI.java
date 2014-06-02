@@ -313,7 +313,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
                 jTextHighscoreHandleKeyPressed(evt);
             }
         });
-        jPanelHighscoreContainer.add(jTextHighscoreHandle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, -1));
+        jPanelHighscoreContainer.add(jTextHighscoreHandle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 70, -1));
 
         jButtonHighscoreSubmit.setText("OK");
         jButtonHighscoreSubmit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -324,7 +324,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
                 jButtonHighscoreSubmitActionPerformed(evt);
             }
         });
-        jPanelHighscoreContainer.add(jButtonHighscoreSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        jPanelHighscoreContainer.add(jButtonHighscoreSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         javax.swing.GroupLayout jPanelHighScoreLayout = new javax.swing.GroupLayout(jPanelHighScore);
         jPanelHighScore.setLayout(jPanelHighScoreLayout);
@@ -332,11 +332,11 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             jPanelHighScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHighScoreLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelHighscoreQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                .addComponent(jLabelHighscoreQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanelHighScoreLayout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(jPanelHighscoreContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(jPanelHighscoreContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelHighScoreLayout.setVerticalGroup(
@@ -344,8 +344,8 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             .addGroup(jPanelHighScoreLayout.createSequentialGroup()
                 .addComponent(jLabelHighscoreQuery, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelHighscoreContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addComponent(jPanelHighscoreContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jDialogHighScoreEntry.getContentPane().add(jPanelHighScore, java.awt.BorderLayout.CENTER);
@@ -364,7 +364,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jBtnGreen.setActionCommand("green");
         jBtnGreen.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnGreen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBtnGreen.setOpaque(true);
         jBtnGreen.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -377,7 +376,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jBtnRed.setActionCommand("red");
         jBtnRed.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnRed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBtnRed.setOpaque(true);
         jBtnRed.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -390,7 +388,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jBtnBlue.setActionCommand("blue");
         jBtnBlue.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnBlue.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBtnBlue.setOpaque(true);
         jBtnBlue.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -403,7 +400,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jBtnYellow.setActionCommand("yellow");
         jBtnYellow.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnYellow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBtnYellow.setOpaque(true);
         jBtnYellow.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -419,7 +415,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
         jBtnStart.setText("Start");
         jBtnStart.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBtnStart.setOpaque(true);
         jBtnStart.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -869,15 +864,18 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             jlblDisplay.setText("0");
 
             //Shows a temporary dialog box stating loss
-            //JOptionPane.showMessageDialog(this,
-            //        "You have lost!",
-            //        "Game Over!",
-            //        JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "You have lost!",
+                    "Game Over!",
+                    JOptionPane.ERROR_MESSAGE);
             //Puts the game back into the started state.
             int score = game.getScore();
             if(game.getHighscore().checkIfHighscore(score))
             {
                 jDialogHighScoreEntry.setVisible(rootPaneCheckingEnabled);
+                
+                //display highscore dialogue
+                displayHighscores();
                 
             }
             game.setState(GameState.STARTED);
