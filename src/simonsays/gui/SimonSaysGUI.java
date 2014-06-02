@@ -29,8 +29,10 @@ import simonsays.gameModel.Output;
  *  Added start and exit to menu bar, title to window frame.
  * @modified 22/05/14 Jaimes
  *  Added instruction dialogue
- * @modified 30/05/14
+ * @modified 30/05/14 Jaimes
  *  Added highscore dialogue
+ * @modified 02/05/14 Jaimes
+ *  Set highscore dialogue text area read only
  *  
  */
 public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListener
@@ -113,7 +115,10 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         }
         if((game.getState()==GameState.PLAYING)&&(game.getOutput()!=null))
         {
-            jlblDisplay.setText(""+game.getOutput().getOutputList().size());
+            // Display current score in the Display label
+            //jlblDisplay.setText("Current Score: "+game.getOutput().getOutputList().size());
+            jlblDisplay.setText("" + game.getOutput().getOutputList().size());
+
         }   
     }
     
@@ -646,7 +651,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
     private void jButtonHighscoreSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHighscoreSubmitActionPerformed
         highscoreHandle = jTextHighscoreHandle.getText();
-        jDialogHighScoreEntry.setVisible(false);
+        jDialogHighScoreEntry.setVisible(true);
     }//GEN-LAST:event_jButtonHighscoreSubmitActionPerformed
 
     private void jTextHighscoreHandleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextHighscoreHandleKeyPressed
@@ -762,10 +767,16 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         ImageIcon icon = createImageIcon("/simonsays/images/musicTrophy.jpg",
                 "a highscore trophy");
         
+        // Create text area for display in dialogue
+        JTextArea highscoreTextArea = new JTextArea(highscoreString);
+        
+        // Set dialogue text area read only
+        highscoreTextArea.setEditable(false);
+        
         // Display highscore dialogue box
         // custom title, custom icon
         JOptionPane.showMessageDialog(this,
-            new JTextArea(highscoreString),
+            highscoreTextArea,
             "Highscores",
             JOptionPane.INFORMATION_MESSAGE,
             icon);
@@ -829,6 +840,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         if(game.getState()==GameState.STARTED)
         {
             //If the game is started, then begin the game
+            //jlblDisplay.setText("Current Score: 0");
             jlblDisplay.setText("0");
             game.startGame();       
         }
@@ -852,9 +864,14 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         //Checks if the game is in game over state
         if (game.getState()==GameState.GAMEOVER)
         {
+            //jlblDisplay.setText("CurrentScore: 0");
             jlblDisplay.setText("0");
+
             //Shows a temporary dialog box stating loss
-            JOptionPane.showMessageDialog(this, "You have lost!", "Game Over!",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "You have lost!",
+                    "Game Over!",
+                    JOptionPane.ERROR_MESSAGE);
             //Puts the game back into the started state.
             game.setState(GameState.STARTED);
         }
