@@ -2,12 +2,10 @@
 package simonsays.gui;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import simonsays.gameModel.Difficulty;
@@ -15,7 +13,6 @@ import simonsays.gameModel.Game;
 import simonsays.gameModel.GameEventListener;
 import simonsays.gameModel.GameState;
 import simonsays.gameModel.MakeSound;
-import simonsays.gameModel.Output;
 
 /**
  *
@@ -37,6 +34,7 @@ import simonsays.gameModel.Output;
  *  Added exit confirmation dialogue: exitConfirmation().
  *  Position highscore input dialogue relative to GUI frame
  *  Display score based on getScore()
+ *  Added slow down for button press display
  *  
  */
 public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListener
@@ -50,11 +48,17 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     Thread outputThread;
     String highscoreHandle = "";
     
-    //java.awt.Color red = new java.awt.Color(190, 30, 30);
+    // Custom button colours
     final Color green = new Color(80, 190, 100);
     final Color red = new Color(190, 30, 30);
     final Color blue = new Color(60, 180, 255);
     final Color yellow = new Color(230, 240, 0);
+    
+    // Custom bright button colours, for use when button is selected.
+    final Color greenBright = new Color(160, 255, 200);
+    final Color redBright = new Color(255, 60, 60);
+    final Color blueBright = new Color(120, 255, 255);
+    final Color yellowBright = new Color(255, 255, 0);
     
     
     /**
@@ -138,7 +142,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             update();
             if(outputList.get(element).equals(1))
             {            
-                jBtnGreen.setBackground(Color.WHITE);
+                jBtnGreen.setBackground(greenBright);
                 //update();
                 toneC.playNPause(outputList.size());
                 jBtnGreen.setBackground(green);         
@@ -146,21 +150,21 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             else if(outputList.get(element).equals(3))
             {
                 
-                jBtnRed.setBackground(Color.WHITE);  
+                jBtnRed.setBackground(redBright);  
                 //update();
                 toneE.playNPause(outputList.size());
                 jBtnRed.setBackground(red);
             }
             else if(outputList.get(element).equals(5))
             {
-                jBtnBlue.setBackground(Color.WHITE);
+                jBtnBlue.setBackground(blueBright);
                 //update();
                 toneG.playNPause(outputList.size());
                 jBtnBlue.setBackground(blue);
             }   
             else if(outputList.get(element).equals(7))
             {
-                jBtnYellow.setBackground(Color.WHITE);
+                jBtnYellow.setBackground(yellowBright);
                 //update();
                 toneB.playNPause(outputList.size());
                 jBtnYellow.setBackground(yellow);
@@ -381,6 +385,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jBtnGreen.setActionCommand("green");
         jBtnGreen.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnGreen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnGreen.setOpaque(true);
         jBtnGreen.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -393,6 +398,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jBtnRed.setActionCommand("red");
         jBtnRed.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnRed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnRed.setOpaque(true);
         jBtnRed.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -405,6 +411,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jBtnBlue.setActionCommand("blue");
         jBtnBlue.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnBlue.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnBlue.setOpaque(true);
         jBtnBlue.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -417,6 +424,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         jBtnYellow.setActionCommand("yellow");
         jBtnYellow.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnYellow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnYellow.setOpaque(true);
         jBtnYellow.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -581,7 +589,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
     private void jBtnGreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGreenActionPerformed
         // When green button clicked, play the related sound
-        
         toneC.playSound();
         
         // If the game is PLAYING register it as input
@@ -593,12 +600,19 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             {
                 game.compareInOutput();
             }
-        }        
+        } 
+        
+        // Slow down button pressed display
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(SimonSaysGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jBtnGreenActionPerformed
 
     private void jBtnYellowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnYellowActionPerformed
-         // When yellow button clicked, play the related sound
-        
+        // When yellow button clicked, play the related sound
         toneB.playSound();
         
         // If the game is PLAYING register it as input
@@ -610,7 +624,15 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             {
                 game.compareInOutput();
             }             
-        }     
+        }   
+        
+        // Slow down button pressed display
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(SimonSaysGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jBtnYellowActionPerformed
 
     private void jBtnBlueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBlueActionPerformed
@@ -628,8 +650,16 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
                 game.compareInOutput();
             }
         }
+        
+        // Slow down button pressed display
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(SimonSaysGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jBtnBlueActionPerformed
 
+    
     private void jBtnRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRedActionPerformed
         // When red button clicked, play the related sound
         
@@ -644,6 +674,13 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             {
                 game.compareInOutput();
             }
+        }
+        
+        // Slow down button pressed display
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(SimonSaysGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBtnRedActionPerformed
 
@@ -686,7 +723,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         displayHighscores();
     }//GEN-LAST:event_jMenuItemHighscoresActionPerformed
                                     
-    
+
     /**
      * Displays the instructional dialogue when selected from the help menu.
      * @param evt The action event to listen for

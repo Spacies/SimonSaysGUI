@@ -11,6 +11,8 @@ import java.net.*;
  * 
  * Code derived from
  * http://www.dreamincode.net/forums/topic/14083-incredibly-easy-way-to-play-sounds/
+ * http://stackoverflow.com/questions/557903/how-can-i-wait-for-a-java-sound-clip-to-finish-playing-back
+ * https://katie.mtech.edu/classes/csci136/assign/dungeon/student/AudioFile.java
  */
 public class MakeSound // Holds one audio file
 {
@@ -103,56 +105,5 @@ public class MakeSound // Holds one audio file
     {
         audioClip.stop(); // Stop
     }
-
-  
     
-    // Play the sound and then wait until it finishes playing.
-    // If the sound is already playing it will stop it and start over.
-    // https://katie.mtech.edu/classes/csci136/assign/dungeon/student/AudioFile.java
-//    public void playBlocking()
-//    {
-//        playSoundOnce();
-//
-//        // We must sleep a bit otherwise to give the audio change to fire up
-//        do
-//        {
-//            System.out.println("Waiting for clip to finish, sleep");
-//            try 
-//            {
-//                Thread.sleep(SLEEP_MS);
-//            } 
-//            catch(InterruptedException e)
-//            {
-//                e.printStackTrace();
-//            }
-//        }
-//        
-//        while (sound.isRunning());
-//    }
-    
-    // http://stackoverflow.com/questions/557903/how-can-i-wait-for-a-java-sound-clip-to-finish-playing-back
-    //private final BlockingQueue<URL> queue = new ArrayBlockingQueue<URL>(1);
-
-//    public void playSoundStream(InputStream stream) {
-//        Clip clip = AudioSystem.getClip();
-//        AudioInputStream inputStream = AudioSystem.getAudioInputStream(stream);
-//        clip.open(inputStream);
-//        clip.start();
-//         
-//        {
-//            public void update(LineEvent e) 
-//            {
-//                if (e.getType() != Type.STOP) {
-//                        return;
-//                }
-//
-//                try {
-//                        queue.take();
-//                } catch (InterruptedException e) {
-//                        //ignore this
-//                }
-//            }
-//        };
-//    clip.addLineListener(listener );
-//    }
 }
