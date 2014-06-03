@@ -3,6 +3,7 @@ package simonsays.gui;
 
 import java.awt.Color;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -35,6 +36,7 @@ import simonsays.gameModel.MakeSound;
  *  Position highscore input dialogue relative to GUI frame
  *  Display score based on getScore()
  *  Added slow down for button press display
+ *  Countdown timer in display label
  *  
  */
 public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListener
@@ -135,6 +137,9 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
      */
     public void buttonOutput(List<Integer> outputList)
     {
+        // Display a countdown in the display label
+        outputCountDownToDisplay();
+        
         //Iterates through the output list passed as arguement
         for (int element = 0; element < outputList.size(); element++)
         {
@@ -172,6 +177,35 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             update();
             
         }
+    }
+    
+    /**
+     * Prints a countdown to the display label.
+     */
+    private void outputCountDownToDisplay()
+    {
+        String dot = "";
+
+        //Iterates through a 4 second countdown
+        for(int i=4; i>0 ; i--)
+        {
+            
+            //Prints current iterator starting at 3, ending at 1
+            jlblDisplay.setText(i+dot);
+            
+            dot += ".";
+            
+            //Pauses the program for a second before continuing
+            try 
+            {
+                //Alternate code for sleeping thread. Intelligible time units
+                TimeUnit.SECONDS.sleep(1);
+            } 
+            catch(InterruptedException ex) {
+                //Handles any exceptions cause by interrupting the thread above
+                Thread.currentThread().interrupt();
+            } 
+        }   
     }
     
 

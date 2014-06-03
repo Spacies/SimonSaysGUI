@@ -45,7 +45,7 @@ public class Output
     
     public void produceOutput(SimonSaysGUI gui)
     {
-        outputCountDown();
+        //outputCountDown();
         // Generate a random int (to associate with a random tone)
         int randomInt = randomIntGenerator.generateRandomInt();
         // Add random int to outputList
@@ -57,7 +57,6 @@ public class Output
      * This is a method to print a countdown before the program begins printing
      * the game output
      */
-    
     private void outputCountDown()
     {
         //This prints 16 new line characters and puts cursor at bottom of console
