@@ -33,6 +33,10 @@ import simonsays.gameModel.Output;
  *  Added highscore dialogue
  * @modified 02/05/14 Jaimes
  *  Set highscore dialogue text area read only
+ * @modified 03/05/14 Jaimes
+ *  Added exit confirmation dialogue: exitConfirmation().
+ *  Position highscore input dialogue relative to GUI frame
+ *  Display score based on getScore()
  *  
  */
 public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListener
@@ -116,9 +120,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         if((game.getState()==GameState.PLAYING)&&(game.getOutput()!=null))
         {
             // Display current score in the Display label
-            //jlblDisplay.setText("Current Score: "+game.getOutput().getOutputList().size());
-            jlblDisplay.setText("" + game.getOutput().getOutputList().size());
-
+            jlblDisplay.setText("" + game.getScore());
         }   
     }
     
@@ -290,7 +292,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         buttonGroupDifficulty.add(jRadioButtonNormal);
         buttonGroupDifficulty.add(jRadioButtonHard);
 
-        jDialogHighScoreEntry.setMinimumSize(new java.awt.Dimension(200, 160));
+        jDialogHighScoreEntry.setMinimumSize(new java.awt.Dimension(200, 200));
         jDialogHighScoreEntry.setModal(true);
         jDialogHighScoreEntry.setPreferredSize(new java.awt.Dimension(300, 200));
         jDialogHighScoreEntry.setResizable(false);
@@ -304,8 +306,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
         jLabelHighscoreQuery.setText("Please enter a three character handle:");
 
-        jPanelHighscoreContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jTextHighscoreHandle.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextHighscoreHandle.setMinimumSize(new java.awt.Dimension(45, 20));
         jTextHighscoreHandle.addKeyListener(new java.awt.event.KeyAdapter()
@@ -315,7 +315,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
                 jTextHighscoreHandleKeyPressed(evt);
             }
         });
-        jPanelHighscoreContainer.add(jTextHighscoreHandle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 70, -1));
 
         jButtonHighscoreSubmit.setText("OK");
         jButtonHighscoreSubmit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -326,28 +325,42 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
                 jButtonHighscoreSubmitActionPerformed(evt);
             }
         });
-        jPanelHighscoreContainer.add(jButtonHighscoreSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        javax.swing.GroupLayout jPanelHighscoreContainerLayout = new javax.swing.GroupLayout(jPanelHighscoreContainer);
+        jPanelHighscoreContainer.setLayout(jPanelHighscoreContainerLayout);
+        jPanelHighscoreContainerLayout.setHorizontalGroup(
+            jPanelHighscoreContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTextHighscoreHandle, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jButtonHighscoreSubmit)
+        );
+        jPanelHighscoreContainerLayout.setVerticalGroup(
+            jPanelHighscoreContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelHighscoreContainerLayout.createSequentialGroup()
+                .addComponent(jTextHighscoreHandle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jButtonHighscoreSubmit))
+        );
 
         javax.swing.GroupLayout jPanelHighScoreLayout = new javax.swing.GroupLayout(jPanelHighScore);
         jPanelHighScore.setLayout(jPanelHighScoreLayout);
         jPanelHighScoreLayout.setHorizontalGroup(
             jPanelHighScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHighScoreLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelHighscoreQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(jPanelHighScoreLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jPanelHighscoreContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanelHighScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelHighscoreQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                    .addGroup(jPanelHighScoreLayout.createSequentialGroup()
+                        .addComponent(jPanelHighscoreContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanelHighScoreLayout.setVerticalGroup(
             jPanelHighScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHighScoreLayout.createSequentialGroup()
                 .addComponent(jLabelHighscoreQuery, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelHighscoreContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanelHighscoreContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         jDialogHighScoreEntry.getContentPane().add(jPanelHighScore, java.awt.BorderLayout.CENTER);
@@ -540,10 +553,15 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Starts the exit confirmation process when exit is selected from the 
+     * menu bar.
+     * @param evt The "exit" selection event to listen for.
+     */
     private void jMenuItemExitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemExitActionPerformed
     {//GEN-HEADEREND:event_jMenuItemExitActionPerformed
-        // Exit when exit selected from menubar
-        System.exit(0);
+        // Bring up exit confirmation dialogue
+        confirmExit();
     }//GEN-LAST:event_jMenuItemExitActionPerformed
 
     private void jMenuItemStartActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemStartActionPerformed
@@ -743,26 +761,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         // Get a String represenation of the highscore table
         String highscoreString = game.getHighscore().getHighscoreString();
         
-        // Get JLabel array representing highscores
-        //JLabel[] highscoreArray = game.getHighscore().getHighscoreJLabelArray();
-        //highscoreLabel.setFont(new Font("Monospaced", Font.PLAIN, 14));
-
-        //http://www.tek-tips.com/viewthread.cfm?qid=647993
-//        JOptionPane jopt = new JOptionPane();
-//        String result;
-//        result = "Print this string.";
-//        JLabel resLabel = new JLabel(result);
-//        resLabel.setFont(new Font("Monospaced", Font.BOLD, 50));
-//        //jopt.setFont(new Font("Monospaced", Font.BOLD, 50));
-//        jopt.showMessageDialog( null, resLabel, "Results", JOptionPane.PLAIN_MESSAGE );
-        
-        //JLabel highscoreLabel = new JLabel(highscoreString);
-        //highscoreLabel.setFont(new Font("Monospaced", Font.PLAIN, 14));
-        //jopt.setFont(new Font("Monospaced", Font.BOLD, 50));
-        //jopt.showMessageDialog( null, highscoreLabel, "Results", JOptionPane.PLAIN_MESSAGE );
-        
-        //JOptionPane.showMessageDialog(null, new JTextArea(highscoreString));
-        
         // Create highscore icon
         ImageIcon icon = createImageIcon("/simonsays/images/musicTrophy.jpg",
                 "a highscore trophy");
@@ -781,17 +779,32 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             JOptionPane.INFORMATION_MESSAGE,
             icon);
         
-        
-        
-//        //custom title, no icon
-//        JOptionPane.showMessageDialog(this,
-//            highscoreString,
-//            "Highscores",
-//            JOptionPane.INFORMATION_MESSAGE);
-        
-
-
     }
+    
+    
+    /**
+     * Displays confirmation dialogue before exiting the application. 
+     */
+    public void confirmExit()
+    {
+        
+        Object[] options = {"Exit",
+                    "Cancel"};
+        int n = JOptionPane.showOptionDialog(this,
+            "Are you sure you want to exit Simon Says?",
+            "Exit Simon Says?",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,     //do not use a custom Icon
+            options,  //the titles of buttons
+            options[1]); //default button title
+        
+        if (n == 0)
+            // Exit when exit confirmed from dialog
+            System.exit(0);
+ 
+    }
+    
     
     public void displaySettings()
     {
@@ -877,6 +890,11 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             if(game.getHighscore().checkIfHighscore(score))
             {
 
+                // Centre highscore entry dialogue window to application frame
+                // Set here because setting in "Custom code" area does not have
+                // desired effect
+                jDialogHighScoreEntry.setLocationRelativeTo(this);
+                
                 jDialogHighScoreEntry.setVisible(rootPaneCheckingEnabled);
                 
                 //display highscore dialogue
