@@ -111,8 +111,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     public void update()
     {
         //jBtnGreen.setBackground(Color.GREEN);
-        jBtnGreen.setBackground(green);
-        
+        jBtnGreen.setBackground(green);    
         jBtnRed.setBackground(red);
         jBtnBlue.setBackground(blue);
         jBtnYellow.setBackground(yellow);
@@ -145,37 +144,45 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         {
             //Checks value at each index and produces appropriate tone/button flash
             update();
+            Difficulty currentDifficulty = game.getDifficulty();
+            
             if(outputList.get(element).equals(1))
             {            
-                jBtnGreen.setBackground(greenBright);
-                //update();
-                toneC.playNPause(outputList.size());
-                jBtnGreen.setBackground(green);         
+                if(currentDifficulty != Difficulty.HARD)
+                {
+                    jBtnGreen.setBackground(greenBright);
+                }
+                toneC.playNPause(outputList.size(),currentDifficulty);
+                //jBtnGreen.setBackground(green);         
             }
             else if(outputList.get(element).equals(3))
             {
-                
-                jBtnRed.setBackground(redBright);  
-                //update();
-                toneE.playNPause(outputList.size());
-                jBtnRed.setBackground(red);
+                if(currentDifficulty != Difficulty.HARD)
+                {
+                    jBtnRed.setBackground(redBright); 
+                }
+                toneE.playNPause(outputList.size(),currentDifficulty);
+                //jBtnRed.setBackground(red);
             }
             else if(outputList.get(element).equals(5))
             {
-                jBtnBlue.setBackground(blueBright);
-                //update();
-                toneG.playNPause(outputList.size());
-                jBtnBlue.setBackground(blue);
+                if(currentDifficulty != Difficulty.HARD)
+                {
+                    jBtnBlue.setBackground(blueBright);
+                }
+                toneG.playNPause(outputList.size(),currentDifficulty);
+                //jBtnBlue.setBackground(blue);
             }   
             else if(outputList.get(element).equals(7))
             {
-                jBtnYellow.setBackground(yellowBright);
-                //update();
-                toneB.playNPause(outputList.size());
-                jBtnYellow.setBackground(yellow);
+                if(currentDifficulty != Difficulty.HARD)
+                {
+                    jBtnYellow.setBackground(yellowBright);
+                }
+                toneB.playNPause(outputList.size(),currentDifficulty);
+                //jBtnYellow.setBackground(yellow);
             }  
-            update();
-            
+            update();         
         }
     }
     
@@ -185,7 +192,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     private void outputCountDownToDisplay()
     {
         String dot = "";
-
+        
         //Iterates through a 4 second countdown
         for(int i=4; i>0 ; i--)
         {

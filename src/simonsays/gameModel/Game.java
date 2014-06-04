@@ -123,11 +123,12 @@ public class Game
             //Set first round to false so new output is not created again
             firstRound = false;
         }
-        if(output.getOutputList().size()>3)
+        if(output.getOutputList().size()>10)
         {
             difficulty = Difficulty.HARD;
-            output.setDifficulty(difficulty);
+            
         }
+        output.setDifficulty(difficulty);
         //Begins printing relevant output and playing corresponding tones
         output.produceOutput(gui);              
 
@@ -239,6 +240,15 @@ public class Game
     public void setDifficulty(Difficulty difficulty)
     {
         this.difficulty = difficulty;
+    }
+    
+        /**
+     * Gets the game difficulty
+     * @return The games difficulty
+     */
+    public Difficulty getDifficulty()
+    {
+        return this.difficulty;
     }
     
     /**

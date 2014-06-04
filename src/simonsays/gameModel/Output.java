@@ -100,10 +100,10 @@ public class Output
     {
         
         // Play a welcome sound sequence
-        toneG.playNPause(getOutputList().size());
-        toneE.playNPause(getOutputList().size());
-        toneB.playNPause(getOutputList().size());
-        toneC.playNPause(getOutputList().size());
+        //toneG.playNPause(getOutputList().size());
+        //toneE.playNPause(getOutputList().size());
+        //toneB.playNPause(getOutputList().size());
+        //toneC.playNPause(getOutputList().size());
         
     }
     
