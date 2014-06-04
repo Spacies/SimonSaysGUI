@@ -1,4 +1,4 @@
-package simonsays.gameModel;
+ package simonsays.gameModel;
 
 import java.applet.*;
 import java.net.*;
@@ -61,20 +61,22 @@ public class MakeSound // Holds one audio file
     * progresses.
      * @param timeMultiplier
     */
-    public void playNPause(int timeMultiplier)
+    public void playNPause(int timeMultiplier, Difficulty difficulty)
     {
         int timeToSleep = 1200;
         audioClip.play(); // Play only once
-        
-        if(timeMultiplier < 7)
+        if(difficulty!=Difficulty.EASY)
         {
-            timeMultiplier *= 100;
-            timeToSleep -= timeMultiplier;
+            if(timeMultiplier < 9)
+            {
+                timeMultiplier *= 100;
+                timeToSleep -= timeMultiplier;
+            }
+            else
+            {
+                timeToSleep = 300;      
+            } 
         }
-        else
-        {
-            timeToSleep = 600;      
-        }        
         //Pause so sounds can play consecutively
         try 
         {
