@@ -37,7 +37,8 @@ import simonsays.gameModel.MakeSound;
  *  Display score based on getScore()
  *  Added slow down for button press display
  *  Countdown timer in display label
- *  
+ * @modified 04/05/14 Jaimes
+ *  Moved input / output comparison from button events to Input addInput() 
  */
 public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListener
 {
@@ -595,23 +596,18 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         // When green button clicked, play the related sound
         toneC.playSound();
         
-        // If the game is PLAYING register it as input
-        if (game.getState() == GameState.PLAYING)
-        {
-            game.getInput().addInput(1);
-            //If output list and input list have equal size compare lists
-            if(game.compareListSize())
-            {
-                game.compareInOutput();
-            }
-        } 
-        
         // Slow down button pressed display
         try {
             Thread.sleep(300);
         } catch (InterruptedException ex) {
             Logger.getLogger(SimonSaysGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        // If the game is PLAYING register it as input
+        if (game.getState() == GameState.PLAYING)
+        {
+            game.getInput().addInput(1);
+        } 
         
     }//GEN-LAST:event_jBtnGreenActionPerformed
 
@@ -619,17 +615,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         // When yellow button clicked, play the related sound
         toneB.playSound();
         
-        // If the game is PLAYING register it as input
-        if (game.getState() == GameState.PLAYING)
-        {
-            game.getInput().addInput(7);
-            //If output list and input list have equal size compare lists
-            if(game.compareListSize())
-            {
-                game.compareInOutput();
-            }             
-        }   
-        
         // Slow down button pressed display
         try {
             Thread.sleep(300);
@@ -637,6 +622,12 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             Logger.getLogger(SimonSaysGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        // If the game is PLAYING register it as input
+        if (game.getState() == GameState.PLAYING)
+        {
+            game.getInput().addInput(7);           
+        }   
+   
     }//GEN-LAST:event_jBtnYellowActionPerformed
 
     private void jBtnBlueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBlueActionPerformed
@@ -644,22 +635,17 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         
         toneG.playSound();
         
-        // If the game is PLAYING register it as input
-        if (game.getState() == GameState.PLAYING)
-        {
-            game.getInput().addInput(5);
-            //If output list and input list have equal size compare lists
-            if(game.compareListSize())
-            {
-                game.compareInOutput();
-            }
-        }
-        
         // Slow down button pressed display
         try {
             Thread.sleep(300);
         } catch (InterruptedException ex) {
             Logger.getLogger(SimonSaysGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // If the game is PLAYING register it as input
+        if (game.getState() == GameState.PLAYING)
+        {
+            game.getInput().addInput(5);
         }
     }//GEN-LAST:event_jBtnBlueActionPerformed
 
@@ -669,23 +655,20 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         
         toneE.playSound();
         
-        // If the game is PLAYING register it as input
-        if (game.getState() == GameState.PLAYING)
-        {
-            game.getInput().addInput(3);
-            //If output list and input list have equal size compare lists
-            if(game.compareListSize())
-            {
-                game.compareInOutput();
-            }
-        }
-        
         // Slow down button pressed display
         try {
             Thread.sleep(300);
         } catch (InterruptedException ex) {
             Logger.getLogger(SimonSaysGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        // If the game is PLAYING register it as input
+        if (game.getState() == GameState.PLAYING)
+        {
+            game.getInput().addInput(3);
+        }
+        
+
     }//GEN-LAST:event_jBtnRedActionPerformed
 
     private void jMenuItemSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSettingsActionPerformed
