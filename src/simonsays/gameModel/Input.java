@@ -133,9 +133,43 @@ public class Input {
         
     }
     
+    /**
+     * Adds input to input list and then checks if input matches output.
+     * @param input The integer representing an input to add to the list
+     */
     public void addInput(int input)
     {
+        // add input
         this.inputList.add(input);
+        
+        //If output list and input list have equal size compare lists
+        if(game.compareListSize())
+        {
+            game.compareInOutput();
+        }
+            
+    }
+    
+    /**
+     * Checks if the specified input is correct.
+     * @param input The specified input represented by an integer
+     * @return inputMatch True if input matches output, false otherwise
+     */
+    public boolean inputCorrect(int input)
+    {
+        boolean inputMatch = false;
+        
+        // Check the input list against the output list (reduced to input size)
+        for (int i = 0; i <= (inputList.size() - 1); ++i )
+        {
+            inputMatch = false;
+            
+            if (output.getOutputList().get(i).equals(inputList.get(i)))
+                inputMatch = true;  
+        }
+        
+        //System.out.println("inputMatch=" + inputMatch);
+        return inputMatch;
     }
     
 } 

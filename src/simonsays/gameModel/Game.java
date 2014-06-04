@@ -142,26 +142,21 @@ public class Game
     public void compareInOutput()
     {
         
-        // Get game's output list.
-        List<Integer> outputListCompare = output.getOutputList();
-        // Get game's input list.
-        List<Integer> inputListCompare = input.getInputList();
-
-        this.state = GameState.WON;
-        // Compare input and output string
-        for (int element = 0; element < outputListCompare.size(); element++)
+        // Check the input list against the output list (reduced to input size)
+        for (int i = 0; i <= (input.getInputList().size() - 1); ++i )
         {
-            // If not the same then end the game.
-            if (!(inputListCompare.get(element).equals(outputListCompare.get(element))))
+
+            if (!(output.getOutputList().get(i).equals(input.getInputList().get(i))))
             {
                 this.state = GameState.GAMEOVER;   
-                firstRound = true;
+                firstRound = true; 
             }
-        }      
+        }
+        
         notifyListenersOfGameChange();       
     } 
     
-    
+
     /**
     * Calculates the game's score based on game's current output length. 
     */

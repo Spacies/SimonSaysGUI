@@ -37,7 +37,8 @@ import simonsays.gameModel.MakeSound;
  *  Display score based on getScore()
  *  Added slow down for button press display
  *  Countdown timer in display label
- *  
+ * @modified 04/05/14 Jaimes
+ *  Moved input / output comparison from button events to Input addInput()
  */
 public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListener
 {
@@ -625,17 +626,6 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         // When green button clicked, play the related sound
         toneC.playSound();
         
-        // If the game is PLAYING register it as input
-        if (game.getState() == GameState.PLAYING)
-        {
-            game.getInput().addInput(1);
-            //If output list and input list have equal size compare lists
-            if(game.compareListSize())
-            {
-                game.compareInOutput();
-            }
-        } 
-        
         // Slow down button pressed display
         try {
             Thread.sleep(300);
@@ -643,23 +633,18 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             Logger.getLogger(SimonSaysGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        // If the game is PLAYING register it as input
+        if (game.getState() == GameState.PLAYING)
+        {
+            game.getInput().addInput(1);
+        } 
+
     }//GEN-LAST:event_jBtnGreenActionPerformed
 
     private void jBtnYellowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnYellowActionPerformed
         // When yellow button clicked, play the related sound
         toneB.playSound();
         
-        // If the game is PLAYING register it as input
-        if (game.getState() == GameState.PLAYING)
-        {
-            game.getInput().addInput(7);
-            //If output list and input list have equal size compare lists
-            if(game.compareListSize())
-            {
-                game.compareInOutput();
-            }             
-        }   
-        
         // Slow down button pressed display
         try {
             Thread.sleep(300);
@@ -667,6 +652,12 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
             Logger.getLogger(SimonSaysGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        // If the game is PLAYING register it as input
+        if (game.getState() == GameState.PLAYING)
+        {
+            game.getInput().addInput(7);           
+        }   
+   
     }//GEN-LAST:event_jBtnYellowActionPerformed
 
     private void jBtnBlueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBlueActionPerformed
@@ -674,23 +665,19 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         
         toneG.playSound();
         
-        // If the game is PLAYING register it as input
-        if (game.getState() == GameState.PLAYING)
-        {
-            game.getInput().addInput(5);
-            //If output list and input list have equal size compare lists
-            if(game.compareListSize())
-            {
-                game.compareInOutput();
-            }
-        }
-        
         // Slow down button pressed display
         try {
             Thread.sleep(300);
         } catch (InterruptedException ex) {
             Logger.getLogger(SimonSaysGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        // If the game is PLAYING register it as input
+        if (game.getState() == GameState.PLAYING)
+        {
+            game.getInput().addInput(5);
+        }
+ 
     }//GEN-LAST:event_jBtnBlueActionPerformed
 
     
@@ -699,23 +686,19 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         
         toneE.playSound();
         
-        // If the game is PLAYING register it as input
-        if (game.getState() == GameState.PLAYING)
-        {
-            game.getInput().addInput(3);
-            //If output list and input list have equal size compare lists
-            if(game.compareListSize())
-            {
-                game.compareInOutput();
-            }
-        }
-        
         // Slow down button pressed display
         try {
             Thread.sleep(300);
         } catch (InterruptedException ex) {
             Logger.getLogger(SimonSaysGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        // If the game is PLAYING register it as input
+        if (game.getState() == GameState.PLAYING)
+        {
+            game.getInput().addInput(3);
+        }
+
     }//GEN-LAST:event_jBtnRedActionPerformed
 
     private void jMenuItemSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSettingsActionPerformed
@@ -972,15 +955,17 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
                 displayHighscores();
                 
             }
+            
             game.setState(GameState.STARTED);
-            //gameHasChanged();
+            
+            gameHasChanged();
         }
         //Checks to see if the game is in won state
         if(game.getState()==GameState.WON)
         {                      
             //Sets the game state back to playing
             game.setState(GameState.PLAYING);
-            //Notifies change listner that game is playing to resume the game
+            //Notifies change listener that game is playing to resume the game
             gameHasChanged();
         }
         //Calls the update method to update the UI
