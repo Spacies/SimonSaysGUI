@@ -53,33 +53,6 @@ public class Output
         gui.buttonOutput(outputList);
     }
     
-    /**
-     * This is a method to print a countdown before the program begins printing
-     * the game output
-     */
-    private void outputCountDown()
-    {
-        //This prints 16 new line characters and puts cursor at bottom of console
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); 
-        //Print out countdown dialogue
-        System.out.println("The game will begin in...");
-        //Iterates through a 3 second countdown
-        for(int i=3; i>0 ; i--)
-        {
-            //Prints current iterator starting at 3, ending at 1
-            System.out.println(i+"...");
-            //Pauses the program for a second before continuing
-            try 
-            {
-                //Alternate code for sleeping thread. Intelligible time units
-                TimeUnit.SECONDS.sleep(1);
-            } 
-            catch(InterruptedException ex) {
-                //Handles any exceptions cause by interrupting the thread above
-                Thread.currentThread().interrupt();
-            } 
-        }   
-    }
     
     /**
      * Gets the outputlist of integers.

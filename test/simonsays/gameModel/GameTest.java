@@ -39,19 +39,19 @@ public class GameTest
     {
         
         game = Game.getGameObject();
-        output = game.getOutput();
-        input = game.getInput();
-        
+        game.setOutput(new Output(Difficulty.EASY));
+        game.setInput(new Input(output,Difficulty.EASY));
+        game.setState(GameState.STARTED);
     }
     
     @After
     public void tearDown()
     {
         
+        game.setOutput(null);
+        game.setInput(null); 
         game = null;
-        output = null;
-        input = null;
-        
+   
     }
 
     /**
@@ -87,60 +87,20 @@ public class GameTest
 
     }
 
-//    /**
-//     * Test of startGame method, of class Game.
-//     */
-//    @Test
-//    public void testStartGame()
-//    {
-//        System.out.println("startGame");
-//        Game instance = null;
-//        instance.startGame();
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    /**
+     * Test of startGame method, of class Game.
+     */
+    @Test
+    public void testStartGame()
+    {
+        System.out.println("startGame");
 
-//    /**
-//     * Test of playGame method, of class Game.
-//     */
-//    @Test
-//    public void testPlayGame()
-//    {
-//        System.out.println("playGame");
-//        Game instance = null;
-//        instance.playGame();
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+        game.startGame();
+        
+        assertEquals(game.getState(), GameState.PLAYING);
 
+    }
 
-
-//    /**
-//     * Test of getScore method when score is greater than 0.
-//     */
-//    @Test
-//    public void testGetScorePositive()
-//    {
-//        System.out.println("getScore");
-//        
-//        game.startGame();
-//        
-//        // Adds to output list via produceOutput()
-//        game.playGame();
-//        
-////        game.getOutput().getOutputList().add(1);
-////        game.getInput().getInputList().add(1);
-//        output.getOutputList().add(1);
-//        input.getInputList().add(1);
-//
-//        //Game instance = game;
-//        
-//        int expResult = 1;
-//        int result = game.getScore();
-//        
-//        assertEquals(expResult, result);
-//
-//    }
     
     /**
      * Test of getScore method when score is less than 0.
@@ -151,14 +111,14 @@ public class GameTest
         System.out.println("getScore when score is 0");
         
         game.startGame();
-        
         // Adds to output list via produceOutput()
         game.playGame();
         
         //Game instance = game;
         
-        int expResult = 0;
-        int result = game.getScore();
+        boolean expResult = true;
+        boolean result = game.getScore()>=0;
+        
         
         assertEquals(expResult, result);
     }
@@ -173,7 +133,7 @@ public class GameTest
         
         Game instance = game;
 
-        GameState expResult = GameState.PLAYING;
+        GameState expResult = GameState.STARTED;
         
         GameState result = instance.getState();
         
@@ -221,9 +181,9 @@ public class GameTest
     public void testGetInput()
     {
         System.out.println("getInput");
-        Game instance = game;
+        //Game instance = game;
 
-        Input result = instance.getInput();
+        Input result = game.getInput();
         assertNotNull(result);
 
     }
@@ -235,9 +195,9 @@ public class GameTest
     public void testGetOutput()
     {
         System.out.println("getOutput");
-        Game instance = game;
+        //Game instance = this.game;
 
-        Output result = instance.getOutput();
+        Output result = game.getOutput();
         assertNotNull(result);
 
     }
@@ -250,7 +210,7 @@ public class GameTest
     {
         System.out.println("compareListSize");
         Game instance = game;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.compareListSize();
         assertEquals(expResult, result);
 

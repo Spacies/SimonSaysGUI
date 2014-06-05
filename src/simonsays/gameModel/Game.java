@@ -290,5 +290,23 @@ public class Game
     {
         return highscore;
     }
- 
+
+    /**
+     * Sets the game output.
+     * @param output The output object to set
+     */
+    public void setOutput(Output output)
+    {
+        this.output = output;
+    }
+
+    /**
+     * Sets the game input.
+     * @param input The input to set to
+     */
+    public void setInput(Input input)
+    {
+        this.input = input;
+    }
+
 }
