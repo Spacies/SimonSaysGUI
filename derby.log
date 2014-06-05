@@ -4,7 +4,7 @@ Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 -
 on database directory /Users/jaimesbooth/NetBeansProjects/SimonSaysGUI/SimonSaysDB  with class loader sun.misc.Launcher$AppClassLoader@2ed4a1d3 
 Loaded from file:/Users/jaimesbooth/NetBeansProjects/SimonSays/javadb/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_25-b15
-user.dir=/Users/jaimesbooth/NetBeansProjects/SimonSaysGUI
+java.runtime.version=1.7.0_51-b13
+user.dir=C:\Users\Sam\Documents\GitHub\SimonSaysGUI
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
