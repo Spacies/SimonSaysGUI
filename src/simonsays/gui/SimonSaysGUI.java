@@ -16,8 +16,8 @@ import simonsays.gameModel.GameState;
 import simonsays.gameModel.MakeSound;
 
 /**
- *
- * @author Jaimes Booth 1305390
+ * Represents a Graphical User Interface for Simon Says.
+ * @author Jaimes Booth 1305390 & Sam McGarvey
  * @version 12/05/14
  * @modified 14/05/14
  *  Basic four coloured button GUI.
@@ -29,15 +29,15 @@ import simonsays.gameModel.MakeSound;
  *  Added instruction dialogue
  * @modified 30/05/14 Jaimes
  *  Added highscore dialogue
- * @modified 02/05/14 Jaimes
+ * @modified 02/06/14 Jaimes
  *  Set highscore dialogue text area read only
- * @modified 03/05/14 Jaimes
+ * @modified 03/06/14 Jaimes
  *  Added exit confirmation dialogue: exitConfirmation().
  *  Position highscore input dialogue relative to GUI frame
  *  Display score based on getScore()
  *  Added slow down for button press display
  *  Countdown timer in display label
- * @modified 04/05/14 Jaimes
+ * @modified 04/06/14 Jaimes
  *  Moved input / output comparison from button events to Input addInput() 
  */
 public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListener
@@ -107,7 +107,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     }
     
     /**
-     * Updates the GUI elements of the SimonSays Game
+     * Updates the GUI elements of the SimonSays Game.
      */
     public void update()
     {
@@ -138,7 +138,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     public void buttonOutput(List<Integer> outputList)
     {
         // Display a countdown in the display label
-        outputCountDownToDisplay();
+        displayCountdown();
         
         //Iterates through the output list passed as arguement
         for (int element = 0; element < outputList.size(); element++)
@@ -190,7 +190,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     /**
      * Prints a countdown to the display label.
      */
-    private void outputCountDownToDisplay()
+    private void displayCountdown()
     {
         String dot = "";
         
@@ -577,6 +577,10 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         confirmExit();
     }//GEN-LAST:event_jMenuItemExitActionPerformed
 
+    /**
+     * Starts the game when start is selected from the menu.
+     * @param evt The menu selection event to listen for.
+     */
     private void jMenuItemStartActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemStartActionPerformed
     {//GEN-HEADEREND:event_jMenuItemStartActionPerformed
         //Starts game when button is pressed
@@ -584,7 +588,7 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     }//GEN-LAST:event_jMenuItemStartActionPerformed
 
     /**
-     * Start the game from the menu bar.
+     * Starts the game from the menu bar.
      * @param evt The menu item action to listen for
      */
     private void jBtnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnStartActionPerformed
@@ -592,6 +596,10 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         game.startGame();
     }//GEN-LAST:event_jBtnStartActionPerformed
 
+    /**
+     * Plays the associated tone and adds the associated number to the input list.
+     * @param evt The button action to listen for
+     */
     private void jBtnGreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGreenActionPerformed
         // When green button clicked, play the related sound
         toneC.playSound();
@@ -611,6 +619,10 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         
     }//GEN-LAST:event_jBtnGreenActionPerformed
 
+    /**
+     * Plays the associated tone and adds the associated number to the input list.
+     * @param evt The button action to listen for
+     */
     private void jBtnYellowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnYellowActionPerformed
         // When yellow button clicked, play the related sound
         toneB.playSound();
@@ -630,6 +642,10 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
    
     }//GEN-LAST:event_jBtnYellowActionPerformed
 
+    /**
+     * Plays the associated tone and adds the associated number to the input list.
+     * @param evt The button action to listen for
+     */
     private void jBtnBlueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBlueActionPerformed
         // When blue button clicked, play the related sound
         
@@ -649,7 +665,10 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
         }
     }//GEN-LAST:event_jBtnBlueActionPerformed
 
-    
+    /**
+     * Plays the associated tone and adds the associated number to the input list.
+     * @param evt The button action to listen for
+     */
     private void jBtnRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRedActionPerformed
         // When red button clicked, play the related sound
         
@@ -671,6 +690,10 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
 
     }//GEN-LAST:event_jBtnRedActionPerformed
 
+    /**
+     * Displays the settings dialogue when selected from the menu.
+     * @param evt The menu action to listen for
+     */
     private void jMenuItemSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSettingsActionPerformed
        if(game.getState()!=GameState.PLAYING)
        {
@@ -678,32 +701,57 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
        }
     }//GEN-LAST:event_jMenuItemSettingsActionPerformed
 
+    /**
+     * Sets the difficulty to Easy.
+     * @param evt The action event to listen for
+     */
     private void jRadioButtonEasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEasyActionPerformed
         game.setDifficulty(Difficulty.EASY);
     }//GEN-LAST:event_jRadioButtonEasyActionPerformed
 
+    /**
+     * Sets the difficulty to Normal.
+     * @param evt The action event to listen for
+     */
     private void jRadioButtonNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNormalActionPerformed
        game.setDifficulty(Difficulty.NORMAL);
     }//GEN-LAST:event_jRadioButtonNormalActionPerformed
 
+    /**
+     * Sets the difficulty to Hard.
+     * @param evt The action event to listen for
+     */
     private void jRadioButtonHardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonHardActionPerformed
         game.setDifficulty(Difficulty.HARD);
     }//GEN-LAST:event_jRadioButtonHardActionPerformed
 
+    /**
+     * Adds player's handle to the highscore table in Simon Says DB when ok is
+     * pressed.
+     * @param evt The action event to listen for
+     */
     private void jButtonHighscoreSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHighscoreSubmitActionPerformed
         highscoreHandle = jTextHighscoreHandle.getText();
         game.getHighscore().insertHighscore(highscoreHandle, game.getScore());
         jDialogHighScoreEntry.setVisible(false);
     }//GEN-LAST:event_jButtonHighscoreSubmitActionPerformed
 
+    /**
+     * Makes sure the string entered as a handle is not longer than 3 characters.
+     * @param evt The text entry event to listen for
+     */
     private void jTextHighscoreHandleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextHighscoreHandleKeyPressed
         if(jTextHighscoreHandle.getText().length()>=3)
         {
             jTextHighscoreHandle.setText(jTextHighscoreHandle.getText().substring(0, 2));
-            //update();
+
         }             
     }//GEN-LAST:event_jTextHighscoreHandleKeyPressed
 
+    /**
+     * Displays the highscore dialog when selected from the menu.
+     * @param evt The menu action to listen for
+     */
     private void jMenuItemHighscoresActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemHighscoresActionPerformed
     {//GEN-HEADEREND:event_jMenuItemHighscoresActionPerformed
         // Display message dialogue with highscores
@@ -870,6 +918,9 @@ public class SimonSaysGUI extends javax.swing.JFrame implements GameEventListene
     private javax.swing.JPanel jpnlWindow;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Adjusts the GUI in reaction to notification of changes in the model.
+     */
     @Override
     public void gameHasChanged() {
         //update();

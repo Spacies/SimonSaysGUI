@@ -94,19 +94,9 @@ public class Output
     }
     
     /**
-     * Plays a welcome sound tone sequence.
+     * Sets the output difficulty
+     * @param difficulty The difficulty to set to
      */
-    public void playWelcomeSound()
-    {
-        
-        // Play a welcome sound sequence
-        //toneG.playNPause(getOutputList().size());
-        //toneE.playNPause(getOutputList().size());
-        //toneB.playNPause(getOutputList().size());
-        //toneC.playNPause(getOutputList().size());
-        
-    }
-    
     public void setDifficulty(Difficulty difficulty)
     {
         this.difficulty = difficulty;

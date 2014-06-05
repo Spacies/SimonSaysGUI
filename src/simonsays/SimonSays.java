@@ -54,7 +54,7 @@ public class SimonSays
             }
         });
         
-        //display welcome splash
+        // display welcome splash
         gui.displayInstructions();
     }
 }    
