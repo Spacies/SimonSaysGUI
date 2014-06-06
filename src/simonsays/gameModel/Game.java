@@ -126,7 +126,7 @@ public class Game
         if(firstRound)
         {
             //Create a new output object during first round
-            this.output = new Output(difficulty);  
+            this.output = new Output();  
             //Set first round to false so new output is not created again
             firstRound = false;
         }
@@ -136,12 +136,11 @@ public class Game
             difficulty = Difficulty.HARD;
             
         }
-        output.setDifficulty(difficulty);
         //Begins printing relevant output and playing corresponding tones
         output.produceOutput(gui);              
 
         //Creates an input option passing the current output as a parameter
-        this.input = new Input(output, difficulty);
+        this.input = new Input(output);
     }
     
     /**

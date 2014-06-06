@@ -35,13 +35,11 @@ public class Input {
     /**
      * Creates a Simon Says Input object based on specified output and difficulty.
      * @param output The output to associate with this input
-     * @param difficulty The difficulty to associate with this input
      */
-    public Input(Output output, Difficulty difficulty)
+    public Input(Output output)
     {
         
         this.output = output;
-        this.difficulty = difficulty;
         this.inputList = new LinkedList<>();
         //receiveInputTest();
         

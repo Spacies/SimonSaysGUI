@@ -19,7 +19,6 @@ public class Output
 {
     private boolean firstRound = true;
     private MakeSound keySound; // The sound made when a key is pressed.
-    private Difficulty difficulty;
     
     
     // The four game tones
@@ -38,9 +37,8 @@ public class Output
     /**
      * Creates output to the Simon Says game.
      */
-    public Output(Difficulty difficulty)
+    public Output()
     {
-        this.difficulty = difficulty;
     }
     
     public void produceOutput(SimonSaysGUI gui)
@@ -64,15 +62,5 @@ public class Output
         
         return outputList;
         
-    }
-    
-    /**
-     * Sets the output difficulty
-     * @param difficulty The difficulty to set to
-     */
-    public void setDifficulty(Difficulty difficulty)
-    {
-        this.difficulty = difficulty;
-    }
-    
+    }   
 }
